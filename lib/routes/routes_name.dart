@@ -13,5 +13,9 @@ class RoutesName {
   static const String resetPassword = '/reset-password';
 
   //Home
+  static const String basePage = '/base';
   static const String home = '/home';
+  static const String profile = '/profile';
+  static const String leaderboard = '/leaderboard';
+  static const String logRoute = '/log-route';
 }

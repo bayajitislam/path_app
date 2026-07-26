@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:path_app/core/constants/app_images.dart';
 import 'package:path_app/core/theme/app_pallete.dart';
 import 'package:path_app/core/widgets/app_bg.dart';
 import 'package:path_app/core/widgets/primary_button.dart';
 import 'package:path_app/features/subscription/constants/subscription_images.dart';
+import 'package:path_app/routes/routes_name.dart';
 
 class SubscriptionPage extends StatefulWidget {
   const SubscriptionPage({super.key});
@@ -190,7 +192,7 @@ class _SubscriptionScreenState extends State<SubscriptionPage> {
                 PrimaryButton(
                   buttonName: 'Next',
                   onPressed: () {
-                    // Get.toNamed(AppRoutes.home);
+                    Get.toNamed(RoutesName.basePage);
                   },
                 ),
                 SizedBox(height: 40.h),
