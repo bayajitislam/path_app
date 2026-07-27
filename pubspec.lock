@@ -102,6 +102,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_devlog:
+    dependency: "direct main"
+    description:
+      name: flutter_devlog
+      sha256: "0e21933a0d2bff9189eed236f49ada69f243cfa75d59df74506be0dffa0cf7e9"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.0"
   flutter_lints:
     dependency: "direct dev"
     description:

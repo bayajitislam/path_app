@@ -11,7 +11,7 @@ class AppTheme {
   );
 
   static final ThemeData lightTheme = ThemeData.light().copyWith(
-    scaffoldBackgroundColor: AppPallete.primary,
+    scaffoldBackgroundColor: AppPallete.secondary,
     appBarTheme: const AppBarTheme(backgroundColor: AppPallete.transparent),
 
     //Text Field Theme

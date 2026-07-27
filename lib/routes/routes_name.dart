@@ -18,4 +18,10 @@ class RoutesName {
   static const String profile = '/profile';
   static const String leaderboard = '/leaderboard';
   static const String logRoute = '/log-route';
+
+  //Play
+  static const String play = '/play';
+
+  //Wallet
+  static const String wallet = '/wallet';
 }

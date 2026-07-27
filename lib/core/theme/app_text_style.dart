@@ -80,4 +80,19 @@ class AppTextStyle {
       fontWeight: fontWeight,
     );
   }
+
+  //
+
+  //Size 32 Weight 700 Poppins
+  static TextStyle s14w7sora({
+    Color? color,
+    double fontSize = 14.0,
+    FontWeight fontWeight = FontWeight.w700,
+  }) {
+    return GoogleFonts.sora(
+      color: color ?? AppPallete.primaryText,
+      fontSize: fontSize,
+      fontWeight: fontWeight,
+    );
+  }
 }

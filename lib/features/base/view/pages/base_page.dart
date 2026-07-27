@@ -6,6 +6,7 @@ import 'package:path_app/features/home/view/pages/home_page.dart';
 import 'package:path_app/features/leaderboard/view/pages/leaderboard_page.dart'
     show LeaderboardPage;
 import 'package:path_app/features/log_route/view/pages/log_route_page.dart';
+import 'package:path_app/features/play/view/pages/play_page.dart';
 import 'package:path_app/features/profile/view/pages/profile_page.dart';
 
 class BasePage extends StatefulWidget {
@@ -20,7 +21,13 @@ class _BasePageState extends State<BasePage> {
   int currentIndex = 0;
 
   //Pages
-  List pages = [HomePage(), LogRoutePage(), LeaderboardPage(), ProfilePage()];
+  List pages = [
+    HomePage(),
+    LogRoutePage(),
+    LeaderboardPage(),
+    ProfilePage(),
+    PlayPage(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +40,11 @@ class _BasePageState extends State<BasePage> {
         shape: const CircleBorder(),
         backgroundColor: AppPallete.primary.withValues(alpha: 0.8),
         elevation: 1,
-        onPressed: () {},
+        onPressed: () {
+          setState(() {
+            currentIndex = 4;
+          });
+        },
         child: Text(
           'Play',
           style: AppTextStyle.s12w4i(

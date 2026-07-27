@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:path_app/core/constants/app_images.dart';
 import 'package:path_app/core/theme/app_pallete.dart';
 
-class PrimaryAppBar extends StatelessWidget implements PreferredSizeWidget {
+class SecondaryAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
-  final String subtitle;
-  final VoidCallback? onBellTap;
   final bool showBackButton;
 
-  const PrimaryAppBar({
+  const SecondaryAppBar({
     super.key,
     required this.title,
-    required this.subtitle,
-    this.onBellTap,
     this.showBackButton = true,
   });
 
@@ -56,44 +51,14 @@ class PrimaryAppBar extends StatelessWidget implements PreferredSizeWidget {
                     Text(
                       title,
                       style: const TextStyle(
-                        fontSize: 18,
+                        fontSize: 16,
                         fontWeight: FontWeight.w700,
                         color: AppPallete.primaryText,
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 2),
-                Text(
-                  subtitle,
-                  style: const TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w400,
-                    color: AppPallete.secondaryText,
-                  ),
-                ),
               ],
-            ),
-          ),
-
-          // Bell button
-          GestureDetector(
-            onTap: onBellTap,
-            child: Container(
-              width: 44,
-              height: 44,
-              decoration: BoxDecoration(
-                color: AppPallete.white,
-                shape: BoxShape.circle,
-                border: Border.all(
-                  color: AppPallete.primary.withValues(alpha: 0.75),
-                  width: 1,
-                ),
-              ),
-              //image
-              child: Center(
-                child: Image.asset(AppImages.bell, width: 22, height: 22),
-              ),
             ),
           ),
         ],
