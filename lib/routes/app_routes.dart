@@ -4,8 +4,9 @@ import 'package:path_app/features/auth/view/pages/forgot_password_page.dart';
 import 'package:path_app/features/auth/view/pages/otp_page.dart';
 import 'package:path_app/features/auth/view/pages/reset_password_page.dart';
 import 'package:path_app/features/base/view/pages/base_page.dart';
-import 'package:path_app/features/home/view%20copy/pages/wallet_page.dart';
 import 'package:path_app/features/home/view/pages/home_page.dart';
+import 'package:path_app/features/home/view/pages/insight_page.dart';
+import 'package:path_app/features/home/view/pages/wallet_page.dart';
 import 'package:path_app/features/leaderboard/view/pages/leaderboard_page.dart';
 import 'package:path_app/features/log_route/view/pages/log_route_page.dart';
 import 'package:path_app/features/onboarding/bindings/onboarding_binding.dart';
@@ -42,8 +43,9 @@ class AppRoutes {
     GetPage(name: RoutesName.leaderboard, page: () => LeaderboardPage()),
     GetPage(name: RoutesName.logRoute, page: () => LogRoutePage()),
 
-    //Wallet
+    //Home
     GetPage(name: RoutesName.wallet, page: () => WalletPage()),
+    GetPage(name: RoutesName.insight, page: () => InsigntPage()),
 
     //Play
     GetPage(name: RoutesName.play, page: () => PlayPage()),

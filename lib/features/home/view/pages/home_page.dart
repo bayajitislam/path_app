@@ -5,7 +5,7 @@ import 'package:path_app/core/widgets/app_bg.dart';
 import 'package:path_app/features/home/view/widgets/challenge_card.dart';
 import 'package:path_app/features/home/view/widgets/home_app_bar.dart';
 import 'package:path_app/features/home/view/widgets/live_wager_card.dart';
-import 'package:path_app/features/home/view/widgets/quick_action_card.dart';
+import 'package:path_app/features/home/view/widgets/home_quick_action_card.dart';
 import 'package:path_app/features/home/view/widgets/recent_trip_card.dart';
 import 'package:path_app/features/home/view/widgets/section_header.dart';
 import 'package:path_app/features/home/view/widgets/sustainability_card.dart';
@@ -30,7 +30,7 @@ class HomePage extends StatelessWidget {
               children: [
                 SustainabilityCard(score: 84, jackpotEarned: 140),
                 SizedBox(height: 14),
-                QuickActionGrid(),
+                HomeQuickActionGrid(),
                 SizedBox(height: 14),
                 SectionHeader(
                   title: 'Live Wager',

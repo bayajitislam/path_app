@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:path_app/core/widgets/app_bg.dart';
 import 'package:path_app/core/widgets/primary_app_bar.dart';
-import 'package:path_app/features/home/view%20copy/widgets/transaction_card.dart';
-import 'package:path_app/features/home/view%20copy/widgets/wager_collection_banner.dart';
-import 'package:path_app/features/home/view%20copy/widgets/wallet_balance_card.dart';
-import 'package:path_app/features/home/view%20copy/widgets/wallet_section_header.dart';
+import 'package:path_app/features/home/view/widgets/section_header.dart';
+import 'package:path_app/features/home/view/widgets/transaction_card.dart';
+import 'package:path_app/features/home/view/widgets/wager_collection_banner.dart';
+import 'package:path_app/features/home/view/widgets/wallet_balance_card.dart';
 
 class WalletPage extends StatelessWidget {
   const WalletPage({super.key});
@@ -33,7 +33,7 @@ class WalletPage extends StatelessWidget {
                 WagerCollectionBanner(),
                 SizedBox(height: 16),
                 // Section header
-                WalletSectionHeader(title: 'Recent Transactions'),
+                SectionHeader(title: 'Recent Transactions'),
                 SizedBox(height: 16),
                 TransactionCard(
                   title: 'Weekly Wager',

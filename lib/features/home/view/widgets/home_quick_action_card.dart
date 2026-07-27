@@ -75,8 +75,8 @@ class QuickActionCard extends StatelessWidget {
 }
 
 // 2x2 grid wrapper for the 4 quick actions
-class QuickActionGrid extends StatelessWidget {
-  const QuickActionGrid({super.key});
+class HomeQuickActionGrid extends StatelessWidget {
+  const HomeQuickActionGrid({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -104,6 +104,7 @@ class QuickActionGrid extends StatelessWidget {
           subtitle: '12 this week',
         ),
         QuickActionCard(
+          onTap: () => Get.toNamed(RoutesName.insight),
           icon: Icons.trending_up_rounded,
           iconColor: Color(0xFF4CAF50),
           iconBgColor: Color(0xFFE8F5E9),

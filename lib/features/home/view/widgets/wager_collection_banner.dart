@@ -3,11 +3,21 @@ import 'package:path_app/core/theme/app_text_style.dart';
 
 class WagerCollectionBanner extends StatelessWidget {
   final String message;
+  final String title;
+  final Color titleColor;
+  final Color messageColor;
+  final Color backgroundColor;
+  final Color borderColor;
 
   const WagerCollectionBanner({
     super.key,
+    this.title = 'Automated Wager Collection',
     this.message =
         '£10.00 will be automatically deducted every Sunday for the weekly competitions.',
+    this.titleColor = const Color(0xFF78350F),
+    this.messageColor = const Color(0xFFB45309),
+    this.backgroundColor = const Color(0xFFFFFBEB),
+    this.borderColor = const Color(0xFFFEF3C7),
   });
 
   @override
@@ -16,9 +26,9 @@ class WagerCollectionBanner extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xFFFFFBEB),
+        color: backgroundColor,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: const Color(0xFFFEF3C7), width: 1),
+        border: Border.all(color: borderColor, width: 1),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.1),
@@ -49,19 +59,14 @@ class WagerCollectionBanner extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Automated Wager Collection',
+                  title,
                   style: AppTextStyle.s14w4i(
                     fontWeight: FontWeight.w700,
-                    color: Color(0xFF78350F),
+                    color: titleColor,
                   ),
                 ),
                 const SizedBox(height: 4),
-                Text(
-                  message,
-                  style: AppTextStyle.s12w4i(
-                    color: Color(0xFFB45309),
-                  )
-                ),
+                Text(message, style: AppTextStyle.s12w4i(color: messageColor)),
               ],
             ),
           ),

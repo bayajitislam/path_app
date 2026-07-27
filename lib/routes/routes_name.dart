@@ -22,6 +22,7 @@ class RoutesName {
   //Play
   static const String play = '/play';
 
-  //Wallet
+  //Home
   static const String wallet = '/wallet';
+  static const String insight = '/insight';
 }
