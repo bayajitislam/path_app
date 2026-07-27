@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:path_app/core/common/app_dialog.dart';
 import 'package:path_app/core/widgets/app_bg.dart';
 import 'package:path_app/core/widgets/primary_app_bar.dart';
 import 'package:path_app/features/home/view/widgets/section_header.dart';
@@ -43,7 +44,18 @@ class HelpAndFeedbackPage extends StatelessWidget {
                 const SizedBox(height: 16),
                 SendFeedbackCard(
                   controller: _feedbackController,
-                  onSubmit: () {},
+                  onSubmit: () {
+                    //OPNE DIALOG
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AppDialog(
+                          message: 'We are working on this feature',
+                          type: DialogType.info,
+                        );
+                      },
+                    );
+                  },
                 ),
               ],
             ),

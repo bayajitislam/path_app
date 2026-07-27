@@ -3,4 +3,9 @@ class AppImages {
   static const String appIcon = 'assets/app/logo.png';
   static const String bell = 'assets/app_bar/notification.png';
   static const String swordLineIcon = 'assets/icons/sword-line.png';
+
+  //Play
+  static const String coinIcon = 'assets/play/coin.png';
+  static const String linkedicon = 'assets/play/linked.png';
+  static const String rewardIcon = 'assets/play/reward.png';
 }
