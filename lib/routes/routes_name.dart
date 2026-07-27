@@ -26,6 +26,7 @@ class RoutesName {
   static const String wallet = '/wallet';
   static const String insight = '/insight';
   static const String tripAnalytics = '/trip-analytics';
+  static const String friends = '/friends';
 
   //Profile
   static const String helpAndFeedback = '/help-and-feedback';

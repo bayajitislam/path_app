@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_devlog/flutter_devlog.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/get_core.dart';
+import 'package:path_app/core/common/app_dialog.dart';
 import 'package:path_app/core/theme/app_pallete.dart';
 import 'package:path_app/core/widgets/app_bg.dart';
 import 'package:path_app/features/home/view/widgets/challenge_card.dart';
@@ -9,6 +12,7 @@ import 'package:path_app/features/home/view/widgets/home_quick_action_card.dart'
 import 'package:path_app/features/home/view/widgets/recent_trip_card.dart';
 import 'package:path_app/features/home/view/widgets/section_header.dart';
 import 'package:path_app/features/home/view/widgets/sustainability_card.dart';
+import 'package:path_app/routes/routes_name.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -35,7 +39,16 @@ class HomePage extends StatelessWidget {
                 SectionHeader(
                   title: 'Live Wager',
                   onViewAll: () {
-                    DevLog.ui('Clicked View All');
+                    //OPNE DIALOG
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AppDialog(
+                          message: 'We are working on this feature',
+                          type: DialogType.info,
+                        );
+                      },
+                    );
                   },
                 ),
                 SizedBox(height: 12),
@@ -50,9 +63,7 @@ class HomePage extends StatelessWidget {
                 SizedBox(height: 14),
                 SectionHeader(
                   title: 'Challenge Your Friends',
-                  onViewAll: () {
-                    DevLog.ui('Clicked View All');
-                  },
+                  onViewAll: () => Get.toNamed(RoutesName.friends),
                 ),
                 SizedBox(height: 14),
                 ChallengeCard(
@@ -62,11 +73,27 @@ class HomePage extends StatelessWidget {
                     DevLog.ui('Clicked Challenge Maya Osei');
                   },
                 ),
-                SizedBox(height: 14),
+                ChallengeCard(
+                  name: 'Maya Osei',
+                  rank: 'Diamond I',
+                  onChallenge: () {
+                    DevLog.ui('Clicked Challenge Maya Osei');
+                  },
+                ),
+                SizedBox(height: 4),
                 SectionHeader(
                   title: 'Recent Trips',
                   onViewAll: () {
-                    DevLog.ui('Clicked View All');
+                    //OPNE DIALOG
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AppDialog(
+                          message: 'We are working on this feature',
+                          type: DialogType.info,
+                        );
+                      },
+                    );
                   },
                 ),
                 SizedBox(height: 12),
