@@ -97,6 +97,7 @@ class HomeQuickActionGrid extends StatelessWidget {
           subtitle: '£124.50',
         ),
         QuickActionCard(
+          onTap: () => Get.toNamed(RoutesName.tripAnalytics),
           icon: Icons.swap_horiz_rounded,
           iconColor: Color(0xFFEF6C00),
           iconBgColor: Color(0xFFFFF3E0),
@@ -112,6 +113,7 @@ class HomeQuickActionGrid extends StatelessWidget {
           subtitle: 'Tips & Stats',
         ),
         QuickActionCard(
+          onTap: () => Get.toNamed(RoutesName.helpAndFeedback),
           icon: Icons.help_outline_rounded,
           iconColor: Color(0xFF6B7280),
           iconBgColor: Color(0xFFF3F4F6),

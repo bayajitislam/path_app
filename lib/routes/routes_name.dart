@@ -12,7 +12,7 @@ class RoutesName {
   static const String forgotPassword = '/forgot-password';
   static const String resetPassword = '/reset-password';
 
-  //Home
+  //Base
   static const String basePage = '/base';
   static const String home = '/home';
   static const String profile = '/profile';
@@ -25,4 +25,8 @@ class RoutesName {
   //Home
   static const String wallet = '/wallet';
   static const String insight = '/insight';
+  static const String tripAnalytics = '/trip-analytics';
+
+  //Profile
+  static const String helpAndFeedback = '/help-and-feedback';
 }
