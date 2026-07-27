@@ -14,6 +14,9 @@ import 'package:path_app/features/log_route/view/pages/log_route_page.dart';
 import 'package:path_app/features/notification/view/pages/notification_page.dart';
 import 'package:path_app/features/onboarding/bindings/onboarding_binding.dart';
 import 'package:path_app/features/onboarding/view/pages/onboarding_page.dart';
+import 'package:path_app/features/play/view/pages/host_match_page.dart';
+import 'package:path_app/features/play/view/pages/in_match_page.dart';
+import 'package:path_app/features/play/view/pages/join_lobby_page.dart';
 import 'package:path_app/features/play/view/pages/play_page.dart';
 import 'package:path_app/features/profile/view/pages/help_and_feedback_page.dart';
 import 'package:path_app/features/profile/view/pages/profile_page.dart';
@@ -55,6 +58,9 @@ class AppRoutes {
 
     //Play
     GetPage(name: RoutesName.play, page: () => PlayPage()),
+    GetPage(name: RoutesName.hostMatch, page: () => HostMatchPage()),
+    GetPage(name: RoutesName.joinLobby, page: () => JoinLobbyPage()),
+    GetPage(name: RoutesName.inMatch, page: () => InMatchPage()),
 
     //Profile
     GetPage(

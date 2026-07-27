@@ -8,4 +8,5 @@ class AppImages {
   static const String coinIcon = 'assets/play/coin.png';
   static const String linkedicon = 'assets/play/linked.png';
   static const String rewardIcon = 'assets/play/reward.png';
+  static const String joinLobby = 'assets/play/Join_Lobby_bg.png';
 }

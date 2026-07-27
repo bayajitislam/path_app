@@ -21,6 +21,9 @@ class RoutesName {
 
   //Play
   static const String play = '/play';
+  static const String hostMatch = '/host-match';
+  static const String joinLobby = '/join-lobby';
+  static const String inMatch = '/in-match';
 
   //Home
   static const String wallet = '/wallet';

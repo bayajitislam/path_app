@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:path_app/core/widgets/app_bg.dart';
 import 'package:path_app/core/widgets/primary_app_bar.dart';
 import 'package:path_app/core/widgets/primary_button.dart';
 import 'package:path_app/features/play/view/widgets/play_filter_chips.dart';
 import 'package:path_app/features/play/view/widgets/play_jackpot_card.dart';
 import 'package:path_app/features/play/view/widgets/play_wager_card.dart';
+import 'package:path_app/routes/routes_name.dart';
 
 class PlayPage extends StatefulWidget {
   const PlayPage({super.key});
@@ -68,10 +70,12 @@ class _PlayPageState extends State<PlayPage> {
         ),
       ),
       floatingActionButton: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, ).copyWith(bottom: 16),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 16,
+        ).copyWith(bottom: 16),
         child: PrimaryButton(
           buttonName: 'Create Game',
-          onPressed: () {},
+          onPressed: () => Get.toNamed(RoutesName.hostMatch),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

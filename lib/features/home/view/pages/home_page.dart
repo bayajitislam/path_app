@@ -56,9 +56,7 @@ class HomePage extends StatelessWidget {
                   route: 'Downtown → New Hill',
                   amount: 20,
                   peopleJoined: 20,
-                  onPlay: () {
-                    DevLog.ui('Clicked Downtown → New Hill');
-                  },
+                  onPlay: () => Get.toNamed(RoutesName.joinLobby),
                 ),
                 SizedBox(height: 14),
                 SectionHeader(

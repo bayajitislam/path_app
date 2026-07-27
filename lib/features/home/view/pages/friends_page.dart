@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:path_app/core/theme/app_pallete.dart';
 import 'package:path_app/core/widgets/app_bg.dart';
+import 'package:path_app/core/widgets/app_searchbar.dart';
 import 'package:path_app/core/widgets/primary_app_bar.dart';
 import 'package:path_app/features/home/view/widgets/challenge_card.dart';
 
@@ -22,18 +22,7 @@ class FriendsPage extends StatelessWidget {
             child: Column(
               children: [
                 //Search
-                SearchBar(
-                  backgroundColor: WidgetStatePropertyAll(AppPallete.white),
-                  shape: WidgetStatePropertyAll(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                  ),
-                  elevation: WidgetStatePropertyAll(0),
-                  leading: Icon(Icons.search, color: AppPallete.primaryText),
-                  hintText: 'Search by player name or @handle',
-                  constraints: BoxConstraints(maxHeight: 40, minHeight: 40),
-                ),
+                AppSearchbar(),
 
                 //All Friends
                 Expanded(
