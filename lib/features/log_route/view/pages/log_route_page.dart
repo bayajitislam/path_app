@@ -12,7 +12,6 @@ class LogRoutePage extends StatelessWidget {
       appBar: PrimaryAppBar(
         title: 'Log Route',
         subtitle: 'Record your delivery route details',
-        onBellTap: () {},
         showBackButton: false,
       ),
       body: AppBg(child: Center(child: Text('Log Route Page'))),

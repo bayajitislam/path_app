@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:path_app/core/theme/app_pallete.dart';
 import 'package:path_app/features/home/constants/home_images.dart';
+import 'package:path_app/routes/routes_name.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String userName;
@@ -63,7 +65,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           const SizedBox(width: 10),
           // Bell button
           _CircleIconButton(
-            onTap: onBellTap,
+            onTap: () => Get.toNamed(RoutesName.notification),
             borderColor: const Color(0xFFD1FAE5),
             child: Image.asset(HomeImages.notification, width: 22, height: 22),
           ),

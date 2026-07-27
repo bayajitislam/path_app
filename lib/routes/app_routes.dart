@@ -10,6 +10,7 @@ import 'package:path_app/features/home/view/pages/trip_analytics_page.dart';
 import 'package:path_app/features/home/view/pages/wallet_page.dart';
 import 'package:path_app/features/leaderboard/view/pages/leaderboard_page.dart';
 import 'package:path_app/features/log_route/view/pages/log_route_page.dart';
+import 'package:path_app/features/notification/view/pages/notification_page.dart';
 import 'package:path_app/features/onboarding/bindings/onboarding_binding.dart';
 import 'package:path_app/features/onboarding/view/pages/onboarding_page.dart';
 import 'package:path_app/features/play/view/pages/play_page.dart';
@@ -58,5 +59,8 @@ class AppRoutes {
       name: RoutesName.helpAndFeedback,
       page: () => HelpAndFeedbackPage(),
     ),
+
+    //Notification
+    GetPage(name: RoutesName.notification, page: () => NotificationPage()),
   ];
 }

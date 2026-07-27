@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:path_app/core/constants/app_images.dart';
 import 'package:path_app/core/theme/app_pallete.dart';
+import 'package:path_app/routes/routes_name.dart';
 
 class PrimaryAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final String subtitle;
-  final VoidCallback? onBellTap;
   final bool showBackButton;
 
   const PrimaryAppBar({
     super.key,
     required this.title,
     required this.subtitle,
-    this.onBellTap,
     this.showBackButton = true,
   });
 
@@ -78,7 +78,7 @@ class PrimaryAppBar extends StatelessWidget implements PreferredSizeWidget {
 
           // Bell button
           GestureDetector(
-            onTap: onBellTap,
+            onTap: () => Get.toNamed(RoutesName.notification),
             child: Container(
               width: 44,
               height: 44,

@@ -29,4 +29,7 @@ class RoutesName {
 
   //Profile
   static const String helpAndFeedback = '/help-and-feedback';
+
+  //Notification
+  static const String notification = '/notification';
 }
