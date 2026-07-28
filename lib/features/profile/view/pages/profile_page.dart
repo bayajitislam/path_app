@@ -34,10 +34,22 @@ class ProfilePage extends StatelessWidget {
                 ProfileMenuSection(
                   sectionTitle: 'Profile',
                   items: [
-                    ProfileMenuItem(title: 'Profile Update', onTap: () {}),
-                    ProfileMenuItem(title: 'Wallet', onTap: () {}),
-                    ProfileMenuItem(title: 'Achievement', onTap: () {}),
-                    ProfileMenuItem(title: 'Rank', onTap: () {}),
+                    ProfileMenuItem(
+                      title: 'Profile Update',
+                      onTap: () => Get.toNamed(RoutesName.profileUpdate),
+                    ),
+                    ProfileMenuItem(
+                      title: 'Wallet',
+                      onTap: () => Get.toNamed(RoutesName.earnings),
+                    ),
+                    ProfileMenuItem(
+                      title: 'Achievement',
+                      onTap: () => Get.toNamed(RoutesName.achievement),
+                    ),
+                    ProfileMenuItem(
+                      title: 'Rank',
+                      onTap: () => Get.toNamed(RoutesName.careerRank),
+                    ),
                   ],
                 ),
 

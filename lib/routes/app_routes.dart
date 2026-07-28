@@ -19,9 +19,13 @@ import 'package:path_app/features/play/view/pages/host_match_page.dart';
 import 'package:path_app/features/play/view/pages/in_match_page.dart';
 import 'package:path_app/features/play/view/pages/join_lobby_page.dart';
 import 'package:path_app/features/play/view/pages/play_page.dart';
+import 'package:path_app/features/profile/view/pages/achievement_page.dart';
+import 'package:path_app/features/profile/view/pages/career_rank_page.dart';
 import 'package:path_app/features/profile/view/pages/connect_account_page.dart';
+import 'package:path_app/features/profile/view/pages/earnings_page.dart';
 import 'package:path_app/features/profile/view/pages/help_and_feedback_page.dart';
 import 'package:path_app/features/profile/view/pages/profile_page.dart';
+import 'package:path_app/features/profile/view/pages/profile_update_page.dart';
 import 'package:path_app/features/profile/view/pages/terms/faqs_page.dart';
 import 'package:path_app/features/profile/view/pages/terms/privacy_policy_page.dart';
 import 'package:path_app/features/profile/view/pages/terms/terms_and_condition_page.dart';
@@ -81,6 +85,11 @@ class AppRoutes {
 
     GetPage(name: RoutesName.connectAccount, page: () => ConnectAccountPage()),
     GetPage(name: RoutesName.changePassword, page: () => ChangePasswordPage()),
+
+    GetPage(name: RoutesName.profileUpdate, page: () => ProfileUpdatePage()),
+    GetPage(name: RoutesName.achievement, page: ()=> AchievementPage()),
+    GetPage(name: RoutesName.careerRank, page: ()=> CareerRankPage()),
+    GetPage(name: RoutesName.earnings, page: ()=> EarningsPage()),
 
     //Notification
     GetPage(name: RoutesName.notification, page: () => NotificationPage()),

@@ -40,6 +40,11 @@ class RoutesName {
   static const String connectAccount = '/connect-account';
   static const String changePassword = '/change-password';
 
+  static const String profileUpdate = '/profile-update';
+  static const String earnings = '/earnings';
+  static const String careerRank = '/career-rank';
+  static const String achievement = '/achievement';
+
   //Notification
   static const String notification = '/notification';
 }

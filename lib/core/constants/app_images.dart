@@ -9,4 +9,7 @@ class AppImages {
   static const String linkedicon = 'assets/play/linked.png';
   static const String rewardIcon = 'assets/play/reward.png';
   static const String joinLobby = 'assets/play/Join_Lobby_bg.png';
+
+  //rank
+  static const String rank1 = 'assets/images/rank1.png';
 }
