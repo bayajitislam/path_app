@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_devlog/flutter_devlog.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/get_core.dart';
 import 'package:path_app/core/common/app_dialog.dart';
 import 'package:path_app/core/theme/app_pallete.dart';
 import 'package:path_app/core/widgets/app_bg.dart';
