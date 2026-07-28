@@ -33,6 +33,12 @@ class RoutesName {
 
   //Profile
   static const String helpAndFeedback = '/help-and-feedback';
+  static const String faqs = '/faqs';
+  static const String privacyPolicy = '/privacy-policy';
+  static const String termsAndConditions = '/terms-and-conditions';
+
+  static const String connectAccount = '/connect-account';
+  static const String changePassword = '/change-password';
 
   //Notification
   static const String notification = '/notification';

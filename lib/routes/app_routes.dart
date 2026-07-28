@@ -1,5 +1,6 @@
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:path_app/features/auth/view/pages/auth_page.dart';
+import 'package:path_app/features/auth/view/pages/change_password_page.dart';
 import 'package:path_app/features/auth/view/pages/forgot_password_page.dart';
 import 'package:path_app/features/auth/view/pages/otp_page.dart';
 import 'package:path_app/features/auth/view/pages/reset_password_page.dart';
@@ -18,8 +19,12 @@ import 'package:path_app/features/play/view/pages/host_match_page.dart';
 import 'package:path_app/features/play/view/pages/in_match_page.dart';
 import 'package:path_app/features/play/view/pages/join_lobby_page.dart';
 import 'package:path_app/features/play/view/pages/play_page.dart';
+import 'package:path_app/features/profile/view/pages/connect_account_page.dart';
 import 'package:path_app/features/profile/view/pages/help_and_feedback_page.dart';
 import 'package:path_app/features/profile/view/pages/profile_page.dart';
+import 'package:path_app/features/profile/view/pages/terms/faqs_page.dart';
+import 'package:path_app/features/profile/view/pages/terms/privacy_policy_page.dart';
+import 'package:path_app/features/profile/view/pages/terms/terms_and_condition_page.dart';
 import 'package:path_app/features/splash/view/pages/splash_page.dart';
 import 'package:path_app/features/subscription/view/pages/subscription_page.dart';
 import 'package:path_app/routes/routes_name.dart';
@@ -67,6 +72,15 @@ class AppRoutes {
       name: RoutesName.helpAndFeedback,
       page: () => HelpAndFeedbackPage(),
     ),
+    GetPage(
+      name: RoutesName.termsAndConditions,
+      page: () => TermsAndConditionsPage(),
+    ),
+    GetPage(name: RoutesName.privacyPolicy, page: () => PrivacyPolicyPage()),
+    GetPage(name: RoutesName.faqs, page: () => FaqsPage()),
+
+    GetPage(name: RoutesName.connectAccount, page: () => ConnectAccountPage()),
+    GetPage(name: RoutesName.changePassword, page: () => ChangePasswordPage()),
 
     //Notification
     GetPage(name: RoutesName.notification, page: () => NotificationPage()),
