@@ -6,15 +6,8 @@ import 'package:path_app/routes/routes_name.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String userName;
-  final VoidCallback? onLeafTap;
-  final VoidCallback? onBellTap;
 
-  const HomeAppBar({
-    super.key,
-    this.userName = 'Kieran',
-    this.onLeafTap,
-    this.onBellTap,
-  });
+  const HomeAppBar({super.key, this.userName = 'Kieran'});
 
   @override
   Size get preferredSize => const Size.fromHeight(72);
@@ -58,7 +51,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           // Leaf button
           _CircleIconButton(
-            onTap: onLeafTap,
+            onTap: () => Get.toNamed(RoutesName.careerRank),
             borderColor: AppPallete.border,
             child: Image.asset(HomeImages.leaf, width: 22, height: 22),
           ),

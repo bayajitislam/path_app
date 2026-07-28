@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
       extendBody: true,
       extendBodyBehindAppBar: true,
       backgroundColor: AppPallete.white,
-      appBar: HomeAppBar(userName: 'Kieran', onBellTap: () {}),
+      appBar: HomeAppBar(userName: 'Kieran'),
       body: AppBg(
         child: SafeArea(
           child: SingleChildScrollView(
