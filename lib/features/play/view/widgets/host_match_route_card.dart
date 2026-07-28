@@ -30,6 +30,7 @@ class HostMatchRouteCard extends StatelessWidget {
           onTap: onTap,
           child: Container(
             width: double.infinity,
+            clipBehavior: Clip.hardEdge,
             decoration: BoxDecoration(
               color: AppPallete.white,
               border: Border.all(color: AppPallete.border, width: 1),

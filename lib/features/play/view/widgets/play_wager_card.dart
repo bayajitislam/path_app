@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:path_app/core/constants/app_images.dart';
 import 'package:path_app/core/theme/app_pallete.dart';
 import 'package:path_app/core/theme/app_text_style.dart';
+import 'package:path_app/routes/routes_name.dart';
 
 class PlayWagerCard extends StatelessWidget {
   final String playerName;
@@ -222,7 +224,7 @@ class PlayWagerCard extends StatelessWidget {
               const Spacer(),
               // Play button
               GestureDetector(
-                onTap: onPlay,
+                onTap: () => Get.toNamed(RoutesName.joinLobby),
                 child: Container(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 20,
