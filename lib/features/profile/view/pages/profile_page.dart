@@ -59,6 +59,13 @@ class ProfilePage extends StatelessWidget {
                   sectionTitle: 'Account',
                   items: [
                     ProfileMenuItem(
+                      title: 'Subscription',
+                      onTap: () => Get.toNamed(
+                        RoutesName.subscription,
+                        arguments: {'isFromProfile': true},
+                      ),
+                    ),
+                    ProfileMenuItem(
                       title: 'Change Password',
                       onTap: () => Get.toNamed(RoutesName.changePassword),
                     ),

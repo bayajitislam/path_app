@@ -41,11 +41,23 @@ class _SubscriptionScreenState extends State<SubscriptionPage> {
     ),
   ];
 
+  //Argument
+  final isFromProfile = Get.arguments['isFromProfile'];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFFEFEFE),
       resizeToAvoidBottomInset: true,
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.close, color: Colors.black),
+            onPressed: () => Get.toNamed(RoutesName.basePage),
+          ),
+        ],
+      ),
       body: AppBg(
         child: SafeArea(
           child: Padding(
@@ -53,7 +65,7 @@ class _SubscriptionScreenState extends State<SubscriptionPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: 60.h),
+                SizedBox(height: 20.h),
                 Center(
                   child: Image.asset(
                     AppImages.appIcon,
@@ -190,7 +202,7 @@ class _SubscriptionScreenState extends State<SubscriptionPage> {
                 }),
                 const Spacer(),
                 PrimaryButton(
-                  buttonName: 'Next',
+                  buttonName: isFromProfile ? 'Upgrade Now' : 'Subscribe Now',
                   onPressed: () {
                     Get.toNamed(RoutesName.basePage);
                   },

@@ -154,7 +154,11 @@ class _AuthPageState extends State<AuthPage> {
                   buttonName: _isLogin ? 'Login' : 'Sign Up',
                   onPressed: () {
                     if (_isLogin) {
-                      Get.toNamed(RoutesName.subscription);
+                      Get.offNamedUntil(
+                        arguments: {'isFromProfile': false},
+                        RoutesName.subscription,
+                        (route) => false,
+                      );
                     } else {
                       Get.toNamed(RoutesName.otp);
                     }
