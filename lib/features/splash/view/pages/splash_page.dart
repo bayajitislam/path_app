@@ -13,8 +13,7 @@ class SplashPage extends StatefulWidget {
   State<SplashPage> createState() => _SplashPageState();
 }
 
-class _SplashPageState extends State<SplashPage>
-    with TickerProviderStateMixin {
+class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   late AnimationController _logoController;
   late AnimationController _buttonsController;
 
@@ -33,17 +32,15 @@ class _SplashPageState extends State<SplashPage>
       duration: const Duration(milliseconds: 900),
     );
 
-    _logoSlide = Tween<Offset>(
-      begin: const Offset(0, -1.2),
-      end: Offset.zero,
-    ).animate(CurvedAnimation(
-      parent: _logoController,
-      curve: Curves.easeOutCubic,
-    ));
+    _logoSlide = Tween<Offset>(begin: const Offset(0, -1.2), end: Offset.zero)
+        .animate(
+          CurvedAnimation(parent: _logoController, curve: Curves.easeOutCubic),
+        );
 
-    _logoFade = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _logoController, curve: Curves.easeIn),
-    );
+    _logoFade = Tween<double>(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(CurvedAnimation(parent: _logoController, curve: Curves.easeIn));
 
     // Buttons slide from bottom → up
     _buttonsController = AnimationController(
@@ -51,13 +48,13 @@ class _SplashPageState extends State<SplashPage>
       duration: const Duration(milliseconds: 700),
     );
 
-    _buttonsSlide = Tween<Offset>(
-      begin: const Offset(0, 1.2),
-      end: Offset.zero,
-    ).animate(CurvedAnimation(
-      parent: _buttonsController,
-      curve: Curves.easeOutCubic,
-    ));
+    _buttonsSlide = Tween<Offset>(begin: const Offset(0, 1.2), end: Offset.zero)
+        .animate(
+          CurvedAnimation(
+            parent: _buttonsController,
+            curve: Curves.easeOutCubic,
+          ),
+        );
 
     _buttonsFade = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(parent: _buttonsController, curve: Curves.easeIn),
@@ -91,10 +88,7 @@ class _SplashPageState extends State<SplashPage>
               gradient: RadialGradient(
                 center: Alignment.center,
                 radius: 1.2,
-                colors: [
-                  Colors.transparent,
-                  Colors.black.withAlpha(160),
-                ],
+                colors: [Colors.transparent, Colors.black.withAlpha(160)],
               ),
             ),
           ),
@@ -105,8 +99,9 @@ class _SplashPageState extends State<SplashPage>
               builder: (context, constraints) {
                 return SingleChildScrollView(
                   child: ConstrainedBox(
-                    constraints:
-                        BoxConstraints(minHeight: constraints.maxHeight),
+                    constraints: BoxConstraints(
+                      minHeight: constraints.maxHeight,
+                    ),
                     child: IntrinsicHeight(
                       child: Column(
                         children: [
@@ -233,15 +228,15 @@ class _Star {
   final double baseRadius;
   final double phase;
   final double rotation; // unique angle per sparkle
-  final bool isSparkle;  // larger ones are full sparkles, tiny ones are dots
+  final bool isSparkle; // larger ones are full sparkles, tiny ones are dots
 
   _Star()
-      : x = Random().nextDouble(),
-        y = Random().nextDouble(),
-        baseRadius = Random().nextDouble() * 5 + 0.8,
-        phase = Random().nextDouble(),
-        rotation = Random().nextDouble() * pi / 4,
-        isSparkle = Random().nextDouble() > 0.35;
+    : x = Random().nextDouble(),
+      y = Random().nextDouble(),
+      baseRadius = Random().nextDouble() * 5 + 0.8,
+      phase = Random().nextDouble(),
+      rotation = Random().nextDouble() * pi / 4,
+      isSparkle = Random().nextDouble() > 0.35;
 }
 
 class _StarPainter extends CustomPainter {
@@ -327,10 +322,7 @@ class _GetStartedButton extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 10.h),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.r),
-                side: BorderSide(
-                  color: Colors.white.withAlpha(30),
-                  width: 1,
-                ),
+                side: BorderSide(color: Colors.white.withAlpha(30), width: 1),
               ),
             ),
             child: Row(
@@ -396,4 +388,3 @@ class _LoginButton extends StatelessWidget {
     );
   }
 }
-
