@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:path_app/core/theme/app_pallete.dart';
@@ -18,7 +17,7 @@ class AppNavBar extends StatelessWidget {
     NavbarImages.profile,
   ];
 
-  static const _labels = ['Home', 'Log Route', 'Leaderboard', 'Profile'];
+  static const _labels = ['Dashboard', 'Log Route', 'Leaderboard', 'Profile'];
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +31,7 @@ class AppNavBar extends StatelessWidget {
             _images[index],
             width: 22,
             height: 22,
-            color: isActive
-                ? AppPallete.secondaryText
-                : AppPallete.secondaryText,
+            color: isActive ? const Color(0xFF111827) : const Color(0xFF6B7280),
           ),
           const SizedBox(height: 3),
           Text(
@@ -42,26 +39,24 @@ class AppNavBar extends StatelessWidget {
             style: TextStyle(
               fontSize: 10,
               fontWeight: isActive ? FontWeight.w600 : FontWeight.w400,
-              color: isActive
-                  ? AppPallete.secondaryText
-                  : AppPallete.secondaryText,
+              color: isActive ? const Color(0xFF111827) : const Color(0xFF6B7280),
             ),
           ),
         ],
       ),
       activeIndex: currentIndex,
       gapLocation: GapLocation.center,
-      backgroundColor: AppPallete.white.withValues(alpha: 0.6),
+      backgroundColor: AppPallete.white.withValues(alpha: 0.95),
       notchSmoothness: NotchSmoothness.softEdge,
       blurEffect: true,
       imageFilter: ImageFilter.blur(
-        sigmaX: 6.0,
-        sigmaY: 6.0,
+        sigmaX: 8.0,
+        sigmaY: 8.0,
         tileMode: TileMode.decal,
       ),
       splashColor: AppPallete.primary.withValues(alpha: 0.1),
-      safeAreaValues: SafeAreaValues(bottom: false, left: false, right: false),
-      borderColor: AppPallete.border,
+      safeAreaValues: const SafeAreaValues(bottom: false, left: false, right: false),
+      borderColor: const Color(0xFFE5E7EB),
       onTap: onTap,
     );
   }

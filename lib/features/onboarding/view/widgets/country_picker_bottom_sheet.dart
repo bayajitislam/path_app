@@ -179,7 +179,7 @@ class _CountryPickerBottomSheetState extends State<CountryPickerBottomSheet> {
                   )
                 : ListView.separated(
                     itemCount: filtered.length,
-                    separatorBuilder: (_, __) => const Divider(
+                    separatorBuilder: (_, _) => const Divider(
                       height: 1,
                       color: Color(0xFFF3F4F6),
                     ),
