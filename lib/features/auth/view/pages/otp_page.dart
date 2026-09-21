@@ -4,7 +4,9 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:path_app/core/constants/app_images.dart';
 import 'package:path_app/core/theme/app_pallete.dart';
+import 'package:path_app/core/widgets/app_bg.dart';
 import 'package:path_app/core/widgets/primary_button.dart';
+import 'package:path_app/core/widgets/secondary_app_bar.dart';
 import 'package:path_app/routes/routes_name.dart';
 
 class OtpPage extends StatefulWidget {
@@ -36,14 +38,16 @@ class _OtpPageState extends State<OtpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFFEFEFE),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
+      extendBodyBehindAppBar: true,
+      appBar: const SecondaryAppBar(title: 'Enter Your OTP'),
+      body: AppBg(
+        child: SafeArea(
+          child: SingleChildScrollView(
             padding: EdgeInsets.symmetric(horizontal: 24.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 60.h),
+                SizedBox(height: 16.h),
                 Center(
                   child: Image.asset(
                     AppImages.appIcon,
@@ -51,7 +55,7 @@ class _OtpPageState extends State<OtpPage> {
                     height: 120.w,
                   ),
                 ),
-                SizedBox(height: 40.h),
+                SizedBox(height: 32.h),
                 Text(
                   'Enter Your OTP',
                   style: GoogleFonts.inter(
