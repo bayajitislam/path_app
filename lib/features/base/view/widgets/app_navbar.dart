@@ -39,7 +39,9 @@ class AppNavBar extends StatelessWidget {
             style: TextStyle(
               fontSize: 10,
               fontWeight: isActive ? FontWeight.w600 : FontWeight.w400,
-              color: isActive ? const Color(0xFF111827) : const Color(0xFF6B7280),
+              color: isActive
+                  ? const Color(0xFF111827)
+                  : const Color(0xFF6B7280),
             ),
           ),
         ],
@@ -55,7 +57,11 @@ class AppNavBar extends StatelessWidget {
         tileMode: TileMode.decal,
       ),
       splashColor: AppPallete.primary.withValues(alpha: 0.1),
-      safeAreaValues: const SafeAreaValues(bottom: false, left: false, right: false),
+      safeAreaValues: const SafeAreaValues(
+        bottom: false,
+        left: false,
+        right: false,
+      ),
       borderColor: const Color(0xFFE5E7EB),
       onTap: onTap,
     );

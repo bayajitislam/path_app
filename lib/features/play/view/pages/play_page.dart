@@ -70,9 +70,9 @@ class _PlayPageState extends State<PlayPage> {
         ),
       ),
       floatingActionButton: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 16,
-        ).copyWith(bottom: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 16).copyWith(
+          bottom: 120,
+        ),
         child: PrimaryButton(
           buttonName: 'Create Game',
           onPressed: () => Get.toNamed(RoutesName.hostMatch),
