@@ -17,6 +17,8 @@ class RoutesName {
   static const String home = '/home';
   static const String profile = '/profile';
   static const String leaderboard = '/leaderboard';
+  static const String selectSpaceCar = '/select-space-car';
+  static const String rankDetail = '/rank-detail';
   static const String logRoute = '/log-route';
 
   //Play

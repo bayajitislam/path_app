@@ -12,7 +12,7 @@ class LeaderboardTabFilter extends StatelessWidget {
     this.onChanged,
   });
 
-  static const _tabs = ['Jackpot', 'Career'];
+  static const _tabs = ['Career', 'Jackpot'];
 
   @override
   Widget build(BuildContext context) {

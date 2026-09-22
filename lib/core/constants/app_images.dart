@@ -19,6 +19,18 @@ class AppImages {
   static const String rewardIcon = 'assets/play/reward.png';
   static const String joinLobby = 'assets/play/Join_Lobby_bg.png';
 
-  // Rank
+  // Rank & Cosmic Road
   static const String rank1 = 'assets/images/rank1.png';
+  static const String spaceUfo = 'assets/images/space_ufo.png';
+  static const String roadSign = 'assets/icons/road_sign.png';
+  static const String purpleHoverCar = 'assets/images/purple_hover_car.png';
+  static const String yellowHoverCar = 'assets/images/yellow_hover_car.png';
+  static const String cosmicStarfieldBg = 'assets/images/cosmic_starfield_bg.jpg';
+  static const String spaceRocket1 = 'assets/images/space_rocket_1.png';
+  static const String spaceRocket2 = 'assets/images/space_rocket_2.png';
+  static const String spaceRocket3 = 'assets/images/space_rocket_3.png';
+  static const String spaceRocket4 = 'assets/images/space_rocket_4.png';
+  static const String spaceSaucer2 = 'assets/images/space_saucer_2.png';
+  static const String spaceSaucer3 = 'assets/images/space_saucer_3.png';
+  static const String spaceSaucer4 = 'assets/images/space_saucer_4.png';
 }

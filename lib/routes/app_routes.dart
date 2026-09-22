@@ -11,6 +11,8 @@ import 'package:path_app/features/home/view/pages/insight_page.dart';
 import 'package:path_app/features/home/view/pages/trip_analytics_page.dart';
 import 'package:path_app/features/home/view/pages/wallet_page.dart';
 import 'package:path_app/features/leaderboard/view/pages/leaderboard_page.dart';
+import 'package:path_app/features/leaderboard/view/pages/rank_detail_page.dart';
+import 'package:path_app/features/leaderboard/view/pages/select_space_car_page.dart';
 import 'package:path_app/features/log_route/view/pages/log_route_page.dart';
 import 'package:path_app/features/notification/view/pages/notification_page.dart';
 import 'package:path_app/features/onboarding/bindings/onboarding_binding.dart';
@@ -56,7 +58,16 @@ class AppRoutes {
     GetPage(name: RoutesName.basePage, page: () => BasePage()),
     GetPage(name: RoutesName.home, page: () => HomePage()),
     GetPage(name: RoutesName.profile, page: () => ProfilePage()),
+    //Leaderboard
     GetPage(name: RoutesName.leaderboard, page: () => LeaderboardPage()),
+    GetPage(
+      name: RoutesName.selectSpaceCar,
+      page: () => const SelectSpaceCarPage(),
+    ),
+    GetPage(
+      name: RoutesName.rankDetail,
+      page: () => const RankDetailPage(),
+    ),
     GetPage(name: RoutesName.logRoute, page: () => LogRoutePage()),
 
     //Home

@@ -4,11 +4,15 @@ import 'package:path_app/core/theme/app_pallete.dart';
 class SecondaryAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final bool showBackButton;
+  final Color titleColor;
+  final Color backButtonColor;
 
   const SecondaryAppBar({
     super.key,
     required this.title,
     this.showBackButton = true,
+    this.titleColor = AppPallete.primaryText,
+    this.backButtonColor = AppPallete.primaryText,
   });
 
   @override
@@ -40,20 +44,16 @@ class SecondaryAppBar extends StatelessWidget implements PreferredSizeWidget {
                     if (displayBack) ...[
                       GestureDetector(
                         onTap: () => Navigator.of(context).pop(),
-                        child: const Icon(
-                          Icons.chevron_left,
-                          size: 24,
-                          color: AppPallete.primaryText,
-                        ),
+                        child: Icon(Icons.chevron_left, size: 24, color: backButtonColor),
                       ),
                       const SizedBox(width: 4),
                     ],
                     Text(
                       title,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w700,
-                        color: AppPallete.primaryText,
+                        color: titleColor,
                       ),
                     ),
                   ],
