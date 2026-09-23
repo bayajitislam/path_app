@@ -50,6 +50,7 @@ class _PlayPageState extends State<PlayPage> {
                   child: ListView.builder(
                     physics: NeverScrollableScrollPhysics(),
                     itemBuilder: (context, index) => PlayWagerCard(
+                      cardIndex: index,
                       playerName: 'Maya Osei',
                       playerRank: 'Diamond I',
                       playerPoints: 250,

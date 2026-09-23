@@ -23,7 +23,7 @@ class JackpotPotStatsCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
       decoration: BoxDecoration(
-        color: Color(0x80FFFBEB),
+        color: AppPallete.white,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: const Color(0x80FEF3C7)),
       ),
