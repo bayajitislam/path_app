@@ -73,7 +73,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         animation: Listenable.merge([entranceAnim, _floatController]),
         builder: (context, _) {
           // Desynchronized smooth sinusoidal bobbing (+/- 3.5 px)
-          final floatVal = math.sin(_floatController.value * 2 * math.pi + phaseOffset);
+          final floatVal = math.sin(
+            _floatController.value * 2 * math.pi + phaseOffset,
+          );
           final floatY = floatVal * 3.5;
 
           final scale = 0.88 + (0.12 * entranceAnim.value);
@@ -83,10 +85,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             opacity: opacity,
             child: Transform.translate(
               offset: Offset(0, floatY),
-              child: Transform.scale(
-                scale: scale,
-                child: child,
-              ),
+              child: Transform.scale(scale: scale, child: child),
             ),
           );
         },
@@ -217,6 +216,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     Get.bottomSheet(
       Container(
         padding: EdgeInsets.all(24.r),
+        width: double.infinity,
         decoration: BoxDecoration(
           color: AppPallete.white,
           borderRadius: BorderRadius.vertical(top: Radius.circular(24.r)),

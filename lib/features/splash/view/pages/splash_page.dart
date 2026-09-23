@@ -236,7 +236,7 @@ class _Star {
       baseRadius = Random().nextDouble() * 5 + 0.8,
       phase = Random().nextDouble(),
       rotation = Random().nextDouble() * pi / 4,
-      isSparkle = Random().nextDouble() > 0.35;
+      isSparkle = Random().nextDouble() > 0.44;
 }
 
 class _StarPainter extends CustomPainter {
