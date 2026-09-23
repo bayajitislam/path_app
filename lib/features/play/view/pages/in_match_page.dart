@@ -78,23 +78,27 @@ class _InMatchPageState extends State<InMatchPage> {
                   players: const [
                     InMatchPlayer(
                       name: 'Sofia Ansarui',
-                      badge: 'Garden',
+                      badge: 'Phytoplankton',
                       points: '480 pts',
+                      time: '2 min',
                     ),
                     InMatchPlayer(
                       name: 'Sofia Ansarui',
                       badge: 'Phytoplankton',
                       points: '480 pts',
+                      time: '2 min',
                     ),
                     InMatchPlayer(
                       name: 'Sofia Ansarui',
-                      badge: 'Small Fish',
+                      badge: 'Phytoplankton',
                       points: '480 pts',
+                      time: '2 min',
                     ),
                     InMatchPlayer(
                       name: 'You',
-                      badge: 'Small Fish',
+                      badge: 'Phytoplankton',
                       points: '480 pts',
+                      time: '2 min',
                       isYou: true,
                     ),
                   ],
