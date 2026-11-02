@@ -6,7 +6,7 @@ class AppImages {
   static const String swordLineIcon = 'assets/icons/sword-line.png';
 
   // Home Map
-  static const String homeMapBg = 'assets/images/home_map_bg.jpg';
+  static const String homeMapBg = 'assets/images/home_map_bg.png';
   static const String scoreIcon = 'assets/icons/score.png';
   static const String friendsIcon = 'assets/icons/friends.png';
   static const String walletIcon = 'assets/icons/wallet.png';
