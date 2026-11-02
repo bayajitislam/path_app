@@ -128,10 +128,7 @@ class _JackpotPotStatsCardState extends State<JackpotPotStatsCard>
                               '${widget.currencySymbol}${widget.prizePool.toStringAsFixed(0)}',
                           label: 'Prize Pool',
                         ),
-                        _StatItem(
-                          value: '${widget.winners}',
-                          label: 'Winners',
-                        ),
+                        _StatItem(value: '${widget.winners}', label: 'Winners'),
                       ],
                     ),
                   ),
@@ -284,7 +281,6 @@ class _FrontLayerPainter extends CustomPainter {
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
 
-
 // ─── Congratulations Card (Jackpot) ──────────────────────────────────────────
 
 class JackpotCongratsCard extends StatefulWidget {
@@ -409,10 +405,7 @@ class _JackpotCongratsCardState extends State<JackpotCongratsCard>
                             children: [
                               Row(
                                 children: [
-                                  Text(
-                                    '🎉',
-                                    style: TextStyle(fontSize: 16.sp),
-                                  ),
+                                  Text('🎉', style: TextStyle(fontSize: 16.sp)),
                                   SizedBox(width: 6.w),
                                   Text(
                                     'Congratulations!',
@@ -492,8 +485,7 @@ class _JackpotCongratsCardState extends State<JackpotCongratsCard>
                                     _barAnim.value * (widget.percentage / 100),
                                 minHeight: 8.h,
                                 backgroundColor: const Color(0xFF1E2923),
-                                valueColor:
-                                    const AlwaysStoppedAnimation<Color>(
+                                valueColor: const AlwaysStoppedAnimation<Color>(
                                   Color(0xFF10B981),
                                 ),
                               ),
@@ -520,8 +512,9 @@ class _JackpotCongratsCardState extends State<JackpotCongratsCard>
                                   Text(
                                     'This Week',
                                     style: GoogleFonts.inter(
-                                      color:
-                                          Colors.white.withValues(alpha: 0.6),
+                                      color: Colors.white.withValues(
+                                        alpha: 0.6,
+                                      ),
                                       fontSize: 11.sp,
                                     ),
                                   ),
@@ -542,8 +535,9 @@ class _JackpotCongratsCardState extends State<JackpotCongratsCard>
                                   Text(
                                     'Estimated Reward',
                                     style: GoogleFonts.inter(
-                                      color:
-                                          Colors.white.withValues(alpha: 0.6),
+                                      color: Colors.white.withValues(
+                                        alpha: 0.6,
+                                      ),
                                       fontSize: 11.sp,
                                     ),
                                   ),
@@ -589,8 +583,9 @@ class _JackpotCongratsCardState extends State<JackpotCongratsCard>
                                   Text(
                                     e,
                                     style: GoogleFonts.inter(
-                                      color:
-                                          Colors.white.withValues(alpha: 0.85),
+                                      color: Colors.white.withValues(
+                                        alpha: 0.85,
+                                      ),
                                       fontSize: 12.sp,
                                       fontWeight: FontWeight.w500,
                                     ),
@@ -603,10 +598,7 @@ class _JackpotCongratsCardState extends State<JackpotCongratsCard>
                             SizedBox(height: 4.h),
                             Row(
                               children: [
-                                Text(
-                                  '🔥',
-                                  style: TextStyle(fontSize: 13.sp),
-                                ),
+                                Text('🔥', style: TextStyle(fontSize: 13.sp)),
                                 SizedBox(width: 6.w),
                                 Text(
                                   widget.nextUnlock!,
@@ -748,10 +740,7 @@ class _JackpotRankRevealCardState extends State<JackpotRankRevealCard>
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
-                                '🎉',
-                                style: TextStyle(fontSize: 18.sp),
-                              ),
+                              Text('🎉', style: TextStyle(fontSize: 18.sp)),
                               SizedBox(width: 8.w),
                               Text(
                                 'Congratulations!',
@@ -784,8 +773,9 @@ class _JackpotRankRevealCardState extends State<JackpotRankRevealCard>
                                 letterSpacing: -1,
                                 shadows: [
                                   Shadow(
-                                    color: const Color(0xFF10B981)
-                                        .withValues(alpha: 0.6),
+                                    color: const Color(
+                                      0xFF10B981,
+                                    ).withValues(alpha: 0.6),
                                     blurRadius: 12,
                                   ),
                                 ],
@@ -828,4 +818,3 @@ class _JackpotRankRevealCardState extends State<JackpotRankRevealCard>
     );
   }
 }
-

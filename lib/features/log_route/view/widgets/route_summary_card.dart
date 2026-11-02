@@ -67,10 +67,7 @@ class RouteSummaryCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: const Color(0xFFF9FAFB),
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                    color: AppPallete.border,
-                    width: 0.8,
-                  ),
+                  border: Border.all(color: AppPallete.border, width: 0.8),
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,

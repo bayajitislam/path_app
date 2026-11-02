@@ -4,15 +4,16 @@ import 'package:path_app/features/auth/view/pages/change_password_page.dart';
 import 'package:path_app/features/auth/view/pages/forgot_password_page.dart';
 import 'package:path_app/features/auth/view/pages/otp_page.dart';
 import 'package:path_app/features/auth/view/pages/reset_password_page.dart';
+import 'package:path_app/features/base/bindings/base_binding.dart';
 import 'package:path_app/features/base/view/pages/base_page.dart';
 import 'package:path_app/features/home/view/pages/friends_page.dart';
 import 'package:path_app/features/home/view/pages/home_page.dart';
-import 'package:path_app/features/home/view/pages/insight_page.dart';
+import 'package:path_app/features/profile/view/pages/insight_page.dart';
 import 'package:path_app/features/home/view/pages/trip_analytics_page.dart';
 import 'package:path_app/features/home/view/pages/wallet_page.dart';
+import 'package:path_app/features/leaderboard/bindings/leaderboard_binding.dart';
 import 'package:path_app/features/leaderboard/view/pages/leaderboard_page.dart';
 import 'package:path_app/features/leaderboard/view/pages/rank_detail_page.dart';
-import 'package:path_app/features/leaderboard/view/pages/select_space_car_page.dart';
 import 'package:path_app/features/log_route/view/pages/log_route_page.dart';
 import 'package:path_app/features/notification/view/pages/notification_page.dart';
 import 'package:path_app/features/onboarding/bindings/onboarding_binding.dart';
@@ -38,71 +39,103 @@ import 'package:path_app/routes/routes_name.dart';
 class AppRoutes {
   static List<GetPage> pages = [
     //Splash
-    GetPage(name: RoutesName.splash, page: () => SplashPage()),
+    GetPage(name: RoutesName.splash, page: () => const SplashPage()),
     //Onboarding
     GetPage(
       name: RoutesName.onboarding,
-      page: () => OnboardingPage(),
+      page: () => const OnboardingPage(),
       binding: OnboardingBinding(),
     ),
     //Auth
-    GetPage(name: RoutesName.auth, page: () => AuthPage()),
-    GetPage(name: RoutesName.forgotPassword, page: () => ForgotPasswordPage()),
-    GetPage(name: RoutesName.otp, page: () => OtpPage()),
-    GetPage(name: RoutesName.resetPassword, page: () => ResetPasswordPage()),
+    GetPage(name: RoutesName.auth, page: () => const AuthPage()),
+    GetPage(
+      name: RoutesName.forgotPassword,
+      page: () => const ForgotPasswordPage(),
+    ),
+    GetPage(name: RoutesName.otp, page: () => const OtpPage()),
+    GetPage(
+      name: RoutesName.resetPassword,
+      page: () => const ResetPasswordPage(),
+    ),
 
     //Subscription
-    GetPage(name: RoutesName.subscription, page: () => SubscriptionPage()),
+    GetPage(
+      name: RoutesName.subscription,
+      page: () => const SubscriptionPage(),
+    ),
 
     //Base
-    GetPage(name: RoutesName.basePage, page: () => BasePage()),
-    GetPage(name: RoutesName.home, page: () => HomePage()),
-    GetPage(name: RoutesName.profile, page: () => ProfilePage()),
-    //Leaderboard
-    GetPage(name: RoutesName.leaderboard, page: () => LeaderboardPage()),
     GetPage(
-      name: RoutesName.selectSpaceCar,
-      page: () => const SelectSpaceCarPage(),
+      name: RoutesName.basePage,
+      page: () => const BasePage(),
+      binding: BaseBinding(),
+    ),
+    GetPage(name: RoutesName.home, page: () => const HomePage()),
+    GetPage(name: RoutesName.profile, page: () => const ProfilePage()),
+    //Leaderboard
+    GetPage(
+      name: RoutesName.leaderboard,
+      page: () => const LeaderboardPage(),
+      binding: LeaderboardBinding(),
     ),
     GetPage(
       name: RoutesName.rankDetail,
       page: () => const RankDetailPage(),
+      binding: LeaderboardBinding(),
     ),
-    GetPage(name: RoutesName.logRoute, page: () => LogRoutePage()),
+    GetPage(name: RoutesName.logRoute, page: () => const LogRoutePage()),
 
     //Home
-    GetPage(name: RoutesName.wallet, page: () => WalletPage()),
-    GetPage(name: RoutesName.insight, page: () => InsigntPage()),
-    GetPage(name: RoutesName.tripAnalytics, page: () => TripAnalytics()),
-    GetPage(name: RoutesName.friends, page: () => FriendsPage()),
+    GetPage(name: RoutesName.wallet, page: () => const WalletPage()),
+    GetPage(
+      name: RoutesName.tripAnalytics,
+      page: () => const TripAnalyticsPage(),
+    ),
+    GetPage(name: RoutesName.friends, page: () => const FriendsPage()),
 
     //Play
-    GetPage(name: RoutesName.play, page: () => PlayPage()),
-    GetPage(name: RoutesName.hostMatch, page: () => HostMatchPage()),
-    GetPage(name: RoutesName.joinLobby, page: () => JoinLobbyPage()),
-    GetPage(name: RoutesName.inMatch, page: () => InMatchPage()),
+    GetPage(name: RoutesName.play, page: () => const PlayPage()),
+    GetPage(name: RoutesName.hostMatch, page: () => const HostMatchPage()),
+    GetPage(name: RoutesName.joinLobby, page: () => const JoinLobbyPage()),
+    GetPage(name: RoutesName.inMatch, page: () => const InMatchPage()),
 
     //Profile
+    GetPage(name: RoutesName.insight, page: () => const InsightPage()),
     GetPage(
       name: RoutesName.helpAndFeedback,
-      page: () => HelpAndFeedbackPage(),
+      page: () => const HelpAndFeedbackPage(),
     ),
     GetPage(
       name: RoutesName.termsAndConditions,
-      page: () => TermsAndConditionsPage(),
+      page: () => const TermsAndConditionsPage(),
     ),
-    GetPage(name: RoutesName.privacyPolicy, page: () => PrivacyPolicyPage()),
-    GetPage(name: RoutesName.faqs, page: () => FaqsPage()),
+    GetPage(
+      name: RoutesName.privacyPolicy,
+      page: () => const PrivacyPolicyPage(),
+    ),
+    GetPage(name: RoutesName.faqs, page: () => const FaqsPage()),
 
-    GetPage(name: RoutesName.connectAccount, page: () => ConnectAccountPage()),
-    GetPage(name: RoutesName.changePassword, page: () => ChangePasswordPage()),
+    GetPage(
+      name: RoutesName.connectAccount,
+      page: () => const ConnectAccountPage(),
+    ),
+    GetPage(
+      name: RoutesName.changePassword,
+      page: () => const ChangePasswordPage(),
+    ),
 
-    GetPage(name: RoutesName.profileUpdate, page: () => ProfileUpdatePage()),
-    GetPage(name: RoutesName.achievement, page: ()=> AchievementPage()),
-    GetPage(name: RoutesName.careerRank, page: ()=> CareerRankPage()),
-    GetPage(name: RoutesName.earnings, page: ()=> EarningsPage()),
+    GetPage(
+      name: RoutesName.profileUpdate,
+      page: () => const ProfileUpdatePage(),
+    ),
+    GetPage(name: RoutesName.achievement, page: () => const AchievementPage()),
+    GetPage(name: RoutesName.careerRank, page: () => const CareerRankPage()),
+    GetPage(name: RoutesName.earnings, page: () => const EarningsPage()),
 
     //Notification
-    GetPage(name: RoutesName.notification, page: () => NotificationPage()),
+    GetPage(
+      name: RoutesName.notification,
+      page: () => const NotificationPage(),
+    ),
   ];
 }

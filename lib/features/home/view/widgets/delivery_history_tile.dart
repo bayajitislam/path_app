@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:path_app/core/constants/app_images.dart';
 import 'package:path_app/core/theme/app_pallete.dart';
 
 class DeliveryHistoryTile extends StatelessWidget {
@@ -202,16 +203,10 @@ class DeliveryHistoryTile extends StatelessWidget {
             Row(
               children: [
                 // Distance
-                Image.asset(
-                  'assets/icons/route.png',
-                  width: 16,
-                  height: 16,
+                const Icon(
+                  Icons.route_outlined,
+                  size: 16,
                   color: AppPallete.secondaryText,
-                  errorBuilder: (_, _, _) => const Icon(
-                    Icons.route_outlined,
-                    size: 16,
-                    color: AppPallete.secondaryText,
-                  ),
                 ),
                 const SizedBox(width: 5),
                 Text(
@@ -241,15 +236,10 @@ class DeliveryHistoryTile extends StatelessWidget {
                 const SizedBox(width: 14),
                 // CO2
                 Image.asset(
-                  'assets/icons/leaf.png',
+                  AppImages.leaf,
                   width: 16,
                   height: 16,
-                  color: Color(0xFF059669),
-                  errorBuilder: (_, _, _) => const Icon(
-                    Icons.eco_outlined,
-                    size: 16,
-                    color: Color(0xFF059669),
-                  ),
+                  color: const Color(0xFF059669),
                 ),
                 const SizedBox(width: 5),
                 RichText(

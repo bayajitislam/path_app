@@ -28,16 +28,14 @@ class RankTierModel {
       name: 'Garden',
       emoji: '🌱',
       requiredPoints: 100,
-      description: 'The foundation of eco-driving. Planting the seeds for greener mobility.',
+      description:
+          'The foundation of eco-driving. Planting the seeds for greener mobility.',
       benefits: [
         'Standard eco-point tracking',
         'Access to community milestones',
         'Basic garden badge',
       ],
-      howToReach: [
-        'Log your first 5 trips',
-        'Avoid harsh acceleration',
-      ],
+      howToReach: ['Log your first 5 trips', 'Avoid harsh acceleration'],
       isUnlocked: true,
     ),
     RankTierModel(
@@ -45,7 +43,8 @@ class RankTierModel {
       name: 'Phytoplankton',
       emoji: '🦠',
       requiredPoints: 250,
-      description: 'Producing clean air and steady habits with every kilometre traveled.',
+      description:
+          'Producing clean air and steady habits with every kilometre traveled.',
       benefits: [
         'Weekly activity summary',
         'Basic reward multiplier (1.1x)',
@@ -62,7 +61,8 @@ class RankTierModel {
       name: 'Small Fish',
       emoji: '🐟',
       requiredPoints: 500,
-      description: 'Navigating efficiently through city traffic with smooth braking.',
+      description:
+          'Navigating efficiently through city traffic with smooth braking.',
       benefits: [
         'Bonus points on eco-routes',
         'Small Fish badge showcase',
@@ -103,7 +103,8 @@ class RankTierModel {
       name: 'Shark',
       emoji: '🦈',
       requiredPoints: 1200,
-      description: 'Dominating efficiency charts with fierce precision and mastery.',
+      description:
+          'Dominating efficiency charts with fierce precision and mastery.',
       benefits: [
         'Shark tier halo aura',
         '2.0x points multiplier',
@@ -120,7 +121,8 @@ class RankTierModel {
       name: 'Bear',
       emoji: '🐻',
       requiredPoints: 1800,
-      description: 'A powerhouse of steady, sustainable driving force on every route.',
+      description:
+          'A powerhouse of steady, sustainable driving force on every route.',
       benefits: [
         'Elite driver badge',
         '2.5x points multiplier',
@@ -136,7 +138,8 @@ class RankTierModel {
       name: 'Lion',
       emoji: '🦁',
       requiredPoints: 2500,
-      description: 'The undisputed monarch of green mobility, leading the galaxy leaderboard.',
+      description:
+          'The undisputed monarch of green mobility, leading the galaxy leaderboard.',
       benefits: [
         'Legendary Lion badge with glowing crown',
         '3.0x max reward multiplier',

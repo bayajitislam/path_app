@@ -31,7 +31,12 @@ class CosmicRoadPainter extends CustomPainter {
     canvas.scale(scaleX, scaleY);
 
     // Extended shader bounds to ensure gradient fades past the edges
-    final shaderRect = const Rect.fromLTWH(0, -60.0, svgWidth, svgHeight + 140.0);
+    final shaderRect = const Rect.fromLTWH(
+      0,
+      -60.0,
+      svgWidth,
+      svgHeight + 140.0,
+    );
 
     // ── 1. The Exact Figma Road Boundary Path with Smooth Extensions ───
     final roadPath = _buildFigmaRoadPath();
@@ -73,8 +78,6 @@ class CosmicRoadPainter extends CustomPainter {
       ..style = PaintingStyle.fill
       ..shader = fillShader;
     canvas.drawPath(roadPath, roadFill);
-
-
 
     // ── 5. Crisp White Glowing Border Stroke ──────────────────
     final borderShader = LinearGradient(
@@ -135,8 +138,6 @@ class CosmicRoadPainter extends CustomPainter {
     path.close();
     return path;
   }
-
-
 
   void _drawLeftGuideline(Canvas canvas, Size size) {
     final scaleX = size.width / svgWidth;

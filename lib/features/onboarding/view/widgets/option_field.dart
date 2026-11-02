@@ -423,11 +423,12 @@ class _PillSweepTransform extends GradientTransform {
   @override
   Matrix4? transform(Rect bounds, {TextDirection? textDirection}) {
     final c = bounds.center;
+    final aspectSqrt = sqrt(aspect);
     return Matrix4.identity()
-      ..translate(c.dx, c.dy)
-      ..scale(1.0, 1.0 / sqrt(aspect))
+      ..translateByDouble(c.dx, c.dy, 0.0, 1.0)
+      ..scaleByDouble(1.0, 1.0 / aspectSqrt, 1.0, 1.0)
       ..rotateZ(angle)
-      ..scale(1.0, sqrt(aspect))
-      ..translate(-c.dx, -c.dy);
+      ..scaleByDouble(1.0, aspectSqrt, 1.0, 1.0)
+      ..translateByDouble(-c.dx, -c.dy, 0.0, 1.0);
   }
 }

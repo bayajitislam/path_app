@@ -30,6 +30,7 @@ class _JoinLobbyPageState extends State<JoinLobbyPage>
   late AnimationController _scaleController;
   late Animation<double> _fadeAnim;
   late Animation<double> _scaleAnim;
+  Timer? _navigationTimer;
 
   @override
   void initState() {
@@ -54,13 +55,14 @@ class _JoinLobbyPageState extends State<JoinLobbyPage>
     _scaleController.forward();
 
     // Auto navigate after 3 seconds
-    Timer(const Duration(seconds: 3), () {
+    _navigationTimer = Timer(const Duration(seconds: 3), () {
       if (mounted) Get.offAndToNamed(RoutesName.hostMatch);
     });
   }
 
   @override
   void dispose() {
+    _navigationTimer?.cancel();
     _fadeController.dispose();
     _scaleController.dispose();
     super.dispose();
@@ -227,7 +229,7 @@ class _ConfettiLayerState extends State<_ConfettiLayer>
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 3),
-    )..addListener(() => setState(() {}));
+    );
 
     // Generate pieces
     for (int i = 0; i < 60; i++) {
@@ -257,11 +259,8 @@ class _ConfettiLayerState extends State<_ConfettiLayer>
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final t = _controller.value;
-
     return SizedBox.expand(
-      child: CustomPaint(painter: _ConfettiPainter(_pieces, t, size)),
+      child: CustomPaint(painter: _ConfettiPainter(_pieces, _controller)),
     );
   }
 }
@@ -292,13 +291,13 @@ class _ConfettiPiece {
 
 class _ConfettiPainter extends CustomPainter {
   final List<_ConfettiPiece> pieces;
-  final double t;
-  final Size screenSize;
+  final Animation<double> animation;
 
-  const _ConfettiPainter(this.pieces, this.t, this.screenSize);
+  _ConfettiPainter(this.pieces, this.animation) : super(repaint: animation);
 
   @override
   void paint(Canvas canvas, Size size) {
+    final t = animation.value;
     for (final p in pieces) {
       final progress = ((t - p.delay) / (1 - p.delay)).clamp(0.0, 1.0);
       if (progress <= 0) continue;
@@ -329,5 +328,5 @@ class _ConfettiPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant _ConfettiPainter old) => old.t != t;
+  bool shouldRepaint(covariant _ConfettiPainter old) => false;
 }

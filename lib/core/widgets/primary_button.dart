@@ -70,8 +70,9 @@ class PrimaryButton extends StatelessWidget {
       return ElevatedButton(
         onPressed: isLoading ? null : onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor:
-              isLoading ? AppPallete.secondary : (solidColor ?? AppPallete.primary),
+          backgroundColor: isLoading
+              ? AppPallete.secondary
+              : (solidColor ?? AppPallete.primary),
           minimumSize: const Size.fromHeight(45),
           shape: RoundedRectangleBorder(borderRadius: radius),
           elevation: 0,

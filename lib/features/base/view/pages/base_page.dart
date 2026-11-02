@@ -25,12 +25,17 @@ class BasePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(BaseController());
+    final controller = Get.isRegistered<BaseController>()
+        ? Get.find<BaseController>()
+        : Get.put(BaseController());
 
     return Obx(
       () => Scaffold(
         extendBody: true,
-        body: pages[controller.currentIndex.value],
+        body: IndexedStack(
+          index: controller.currentIndex.value,
+          children: pages,
+        ),
 
         // Glassmorphic Floating Action Button (Play)
         floatingActionButton: Container(

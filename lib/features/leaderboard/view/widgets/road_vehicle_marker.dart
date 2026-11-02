@@ -6,13 +6,9 @@ import 'package:path_app/core/constants/app_images.dart';
 /// Animated vehicle marker placed on the cosmic path at the user's current rank.
 class RoadVehicleMarker extends StatefulWidget {
   final String carId;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
-  const RoadVehicleMarker({
-    super.key,
-    required this.carId,
-    required this.onTap,
-  });
+  const RoadVehicleMarker({super.key, required this.carId, this.onTap});
 
   @override
   State<RoadVehicleMarker> createState() => _RoadVehicleMarkerState();
@@ -65,27 +61,23 @@ class _RoadVehicleMarkerState extends State<RoadVehicleMarker>
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: widget.onTap,
-      child: AnimatedBuilder(
-        animation: _hoverCtrl,
-        builder: (context, child) {
-          final dy = math.sin(_hoverCtrl.value * math.pi) * 4.0;
-          return Transform.translate(
-            offset: Offset(0, dy),
-            child: child,
-          );
-        },
-        child: Container(
-          width: 78.w,
-          height: 116.h,
-          alignment: Alignment.center,
-          child: Image.asset(
-            _resolveCarAsset(),
-            fit: BoxFit.contain,
-          ),
-        ),
+    final vehicle = AnimatedBuilder(
+      animation: _hoverCtrl,
+      builder: (context, child) {
+        final dy = math.sin(_hoverCtrl.value * math.pi) * 4.0;
+        return Transform.translate(offset: Offset(0, dy), child: child);
+      },
+      child: Container(
+        width: 78.w,
+        height: 116.h,
+        alignment: Alignment.center,
+        child: Image.asset(_resolveCarAsset(), fit: BoxFit.contain),
       ),
     );
+
+    if (widget.onTap != null) {
+      return GestureDetector(onTap: widget.onTap, child: vehicle);
+    }
+    return vehicle;
   }
 }

@@ -6,7 +6,7 @@ class AppTextStyle {
   //Size 32 Weight 700 Inter
   static TextStyle s32w7i({
     Color? color,
-    double fontSize = 28.0,
+    double fontSize = 32.0,
     FontWeight fontWeight = FontWeight.w700,
   }) {
     return GoogleFonts.inter(
@@ -71,7 +71,7 @@ class AppTextStyle {
   //Size 10 Weight 400 Inter
   static TextStyle s10w4i({
     Color? color,
-    double fontSize = 12.0,
+    double fontSize = 10.0,
     FontWeight fontWeight = FontWeight.w400,
   }) {
     return GoogleFonts.inter(
@@ -81,9 +81,7 @@ class AppTextStyle {
     );
   }
 
-  //
-
-  //Size 32 Weight 700 Poppins
+  //Size 14 Weight 700 Sora
   static TextStyle s14w7sora({
     Color? color,
     double fontSize = 14.0,

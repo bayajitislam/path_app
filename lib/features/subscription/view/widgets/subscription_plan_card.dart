@@ -168,11 +168,7 @@ class _SubscriptionPlanCardState extends State<SubscriptionPlanCard>
                   ),
                   child: Row(
                     children: [
-                      Image.asset(
-                        widget.plan.icon,
-                        width: 33.w,
-                        height: 33.w,
-                      ),
+                      Image.asset(widget.plan.icon, width: 33.w, height: 33.w),
                       SizedBox(width: 12.w),
                       Expanded(
                         child: Column(
@@ -255,7 +251,9 @@ class _SubscriptionPlanCardState extends State<SubscriptionPlanCard>
                           borderRadius: BorderRadius.circular(20.r),
                           boxShadow: [
                             BoxShadow(
-                              color: const Color(0xFF34C759).withValues(alpha: 0.35 * t),
+                              color: const Color(
+                                0xFF34C759,
+                              ).withValues(alpha: 0.35 * t),
                               blurRadius: 8,
                               offset: const Offset(0, 2),
                             ),
@@ -321,12 +319,11 @@ class _PlanOuterGlowPainter extends CustomPainter {
       transform: transform,
     );
 
-
     // Pass 2: Intense tight inner aura (4px blur)
     final tightAuraPaint = Paint()
       ..shader = sweepGradient.createShader(rect)
       ..style = PaintingStyle.stroke
-      ..strokeWidth = borderWidth 
+      ..strokeWidth = borderWidth
       ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 4.0);
     canvas.drawRRect(rrect, tightAuraPaint);
   }
@@ -432,11 +429,12 @@ class _CardSweepTransform extends GradientTransform {
   @override
   Matrix4? transform(Rect bounds, {TextDirection? textDirection}) {
     final c = bounds.center;
+    final aspectSqrt = sqrt(aspect);
     return Matrix4.identity()
-      ..translate(c.dx, c.dy)
-      ..scale(1.0, 1.0 / sqrt(aspect))
+      ..translateByDouble(c.dx, c.dy, 0.0, 1.0)
+      ..scaleByDouble(1.0, 1.0 / aspectSqrt, 1.0, 1.0)
       ..rotateZ(angle)
-      ..scale(1.0, sqrt(aspect))
-      ..translate(-c.dx, -c.dy);
+      ..scaleByDouble(1.0, aspectSqrt, 1.0, 1.0)
+      ..translateByDouble(-c.dx, -c.dy, 0.0, 1.0);
   }
 }

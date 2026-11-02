@@ -3,8 +3,8 @@ import 'package:path_app/core/widgets/app_bg.dart';
 import 'package:path_app/core/widgets/primary_button.dart';
 import 'package:path_app/core/widgets/secondary_app_bar.dart';
 import 'package:path_app/features/auth/view/widgets/auth_field.dart';
-import 'package:path_app/features/profile/view/widgets/profile_image_.avatardart';
-import 'package:path_app/features/profile/view/widgets/uplaod_image_field.dart';
+import 'package:path_app/features/profile/view/widgets/profile_image_avatar.dart';
+import 'package:path_app/features/profile/view/widgets/upload_image_field.dart';
 
 // Component Imports
 // import 'package:path_app/features/profile/widgets/profile_image_avatar.dart';

@@ -8,11 +8,7 @@ class RoadMilestoneSign extends StatelessWidget {
   final int points;
   final VoidCallback? onTap;
 
-  const RoadMilestoneSign({
-    super.key,
-    required this.points,
-    this.onTap,
-  });
+  const RoadMilestoneSign({super.key, required this.points, this.onTap});
 
   @override
   Widget build(BuildContext context) {

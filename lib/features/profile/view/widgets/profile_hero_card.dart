@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:path_app/core/constants/app_images.dart';
 import 'package:path_app/core/theme/app_pallete.dart';
 
 class ProfileHeroCard extends StatelessWidget {
@@ -53,24 +54,15 @@ class ProfileHeroCard extends StatelessWidget {
             ),
             child: ClipOval(
               child: avatarUrl != null
-                  ? Image.network(avatarUrl!, fit: BoxFit.cover)
-                  : Image.asset(
-                      'assets/images/avatar_placeholder.png',
+                  ? Image.network(
+                      avatarUrl!,
                       fit: BoxFit.cover,
-                      errorBuilder: (_, _, _) => Container(
-                        color: const Color(0xFF87CEEB),
-                        child: Center(
-                          child: Text(
-                            name.isNotEmpty ? name[0] : '?',
-                            style: const TextStyle(
-                              fontSize: 32,
-                              fontWeight: FontWeight.w700,
-                              color: AppPallete.white,
-                            ),
-                          ),
-                        ),
+                      errorBuilder: (_, _, _) => Image.asset(
+                        AppImages.defaultAvatar,
+                        fit: BoxFit.cover,
                       ),
-                    ),
+                    )
+                  : Image.asset(AppImages.defaultAvatar, fit: BoxFit.cover),
             ),
           ),
 
@@ -92,16 +84,7 @@ class ProfileHeroCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(
-                'assets/icons/galaxy_rank.png',
-                width: 16,
-                height: 16,
-                errorBuilder: (_, _, _) => const Icon(
-                  Icons.auto_awesome,
-                  size: 15,
-                  color: AppPallete.secondaryText,
-                ),
-              ),
+              Image.asset(AppImages.rankIcon, width: 16, height: 16),
               const SizedBox(width: 5),
               Text(
                 rank,

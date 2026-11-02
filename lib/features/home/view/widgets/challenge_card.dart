@@ -60,16 +60,12 @@ class ChallengeCard extends StatelessWidget {
               children: [
                 Text(
                   name,
-                  style: AppTextStyle.s14w7sora(
-                    color: AppPallete.primaryText
-                  )
+                  style: AppTextStyle.s14w7sora(color: AppPallete.primaryText),
                 ),
                 const SizedBox(height: 2),
                 Text(
                   rank,
-                  style: AppTextStyle.s12w4i(
-                    color: AppPallete.secondaryText
-                  )
+                  style: AppTextStyle.s12w4i(color: AppPallete.secondaryText),
                 ),
               ],
             ),

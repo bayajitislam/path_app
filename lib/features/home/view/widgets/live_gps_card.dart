@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:path_app/core/constants/app_images.dart';
 import 'package:path_app/core/theme/app_pallete.dart';
 import 'package:path_app/core/theme/app_text_style.dart';
 
 class LiveGpsCard extends StatelessWidget {
-  final String mapImageUrl;
+  final String? mapImageUrl;
+  final String mapAsset;
   final String comparisonTitle;
   final String comparisonSubtitle;
 
   const LiveGpsCard({
     super.key,
-    this.mapImageUrl =
-        'https://tile.openstreetmap.org/14/4823/6160.png', // Placeholder map tile
+    this.mapImageUrl,
+    this.mapAsset = AppImages.mapPreview,
     this.comparisonTitle = 'Eco-Route Comparison',
     this.comparisonSubtitle =
         'Your current route saves 12% more CO₂ compared to the standard Google Maps suggestion.',
@@ -40,18 +42,43 @@ class LiveGpsCard extends StatelessWidget {
               SizedBox(
                 height: 120,
                 width: double.infinity,
-                child: Image.network(
-                  mapImageUrl,
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) => Container(
-                    color: const Color(0xFFEFEFEF),
-                    child: const Icon(
-                      Icons.map_outlined,
-                      color: AppPallete.secondaryText,
-                      size: 40,
-                    ),
-                  ),
-                ),
+                child: mapImageUrl != null && mapImageUrl!.isNotEmpty
+                    ? Image.network(
+                        mapImageUrl!,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) =>
+                            Image.asset(
+                              mapAsset,
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, error, stackTrace) =>
+                                  Container(
+                                    color: const Color(0xFFEFEFEF),
+                                    child: const Icon(
+                                      Icons.map_outlined,
+                                      color: AppPallete.secondaryText,
+                                      size: 40,
+                                    ),
+                                  ),
+                            ),
+                      )
+                    : Image.asset(
+                        mapAsset,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) => Container(
+                          color: const Color(0xFFEFEFEF),
+                          child: const Icon(
+                            Icons.map_outlined,
+                            color: AppPallete.secondaryText,
+                            size: 40,
+                          ),
+                        ),
+                      ),
+              ),
+              // Subtle contrast overlay
+              Container(
+                height: 120,
+                width: double.infinity,
+                color: Colors.black.withValues(alpha: 0.05),
               ),
               // Floating Badge
               Container(

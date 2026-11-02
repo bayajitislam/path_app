@@ -12,11 +12,7 @@ class HomeMapTopBar extends StatelessWidget {
   final VoidCallback? onLeafTap;
   final String title;
 
-  const HomeMapTopBar({
-    super.key,
-    this.onLeafTap,
-    this.title = 'Path',
-  });
+  const HomeMapTopBar({super.key, this.onLeafTap, this.title = 'Path'});
 
   @override
   Widget build(BuildContext context) {
@@ -69,15 +65,12 @@ class HomeMapTopBar extends StatelessWidget {
             children: [
               // Leaf Action Button
               _CircularActionButton(
-                onTap: onLeafTap ??
+                onTap:
+                    onLeafTap ??
                     () {
                       // Navigate or show sustainability / eco status
                     },
-                child: Image.asset(
-                  AppImages.leaf,
-                  width: 22.r,
-                  height: 22.r,
-                ),
+                child: Image.asset(AppImages.leaf, width: 22.r, height: 22.r),
               ),
               SizedBox(width: 12.w),
 
@@ -207,10 +200,7 @@ class _CircularActionButton extends StatelessWidget {
   final Widget child;
   final VoidCallback onTap;
 
-  const _CircularActionButton({
-    required this.child,
-    required this.onTap,
-  });
+  const _CircularActionButton({required this.child, required this.onTap});
 
   @override
   Widget build(BuildContext context) {

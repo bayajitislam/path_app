@@ -2,26 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:path_app/core/widgets/app_bg.dart';
 import 'package:path_app/core/widgets/secondary_app_bar.dart';
-import 'package:path_app/features/profile/view/widgets/delete_account_dailog.dart';
+import 'package:path_app/features/profile/view/widgets/delete_account_dialog.dart';
 import 'package:path_app/features/profile/view/widgets/profile_hero_card.dart';
 import 'package:path_app/features/profile/view/widgets/profile_menu_section.dart';
 import 'package:path_app/routes/routes_name.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
+
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  bool _notificationsEnabled = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: SecondaryAppBar(title: 'Profile', showBackButton: false),
+      appBar: const SecondaryAppBar(title: 'Profile', showBackButton: false),
       body: AppBg(
         child: SafeArea(
           child: SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
               children: [
-                ProfileHeroCard(
+                const ProfileHeroCard(
                   name: 'Kieran Tait',
                   rank: '🌌 Galaxy Rank',
                   winStreak: 6,
@@ -30,7 +37,7 @@ class ProfilePage extends StatelessWidget {
                 ),
 
                 //Profile
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 ProfileMenuSection(
                   sectionTitle: 'Profile',
                   items: [
@@ -39,7 +46,11 @@ class ProfilePage extends StatelessWidget {
                       onTap: () => Get.toNamed(RoutesName.profileUpdate),
                     ),
                     ProfileMenuItem(
-                      title: 'Wallet',
+                      title: 'Insights',
+                      onTap: () => Get.toNamed(RoutesName.insight),
+                    ),
+                    ProfileMenuItem(
+                      title: 'Earnings',
                       onTap: () => Get.toNamed(RoutesName.earnings),
                     ),
                     ProfileMenuItem(
@@ -54,7 +65,7 @@ class ProfilePage extends StatelessWidget {
                 ),
 
                 //Account
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 ProfileMenuSection(
                   sectionTitle: 'Account',
                   items: [
@@ -76,8 +87,6 @@ class ProfilePage extends StatelessWidget {
                     ProfileMenuItem(
                       title: 'Delete Account',
                       onTap: () {
-                        // Delete account
-                        //Open Dialog
                         DeleteAccountDialog.show(context);
                       },
                     ),
@@ -85,32 +94,37 @@ class ProfilePage extends StatelessWidget {
                 ),
 
                 //More
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 ProfileMenuSection(
                   sectionTitle: 'More',
                   items: [
                     ProfileMenuItem(
                       title: 'Notification Preferences',
                       isNotification: true,
-                      switchValue: false,
+                      switchValue: _notificationsEnabled,
                       onSwitchChanged: (val) {
-                        // Update state
+                        setState(() => _notificationsEnabled = val);
                       },
                     ),
                     ProfileMenuItem(
-                      title: 'Terms & Conditionss',
+                      title: 'Help & Feedback',
+                      onTap: () => Get.toNamed(RoutesName.helpAndFeedback),
+                    ),
+                    ProfileMenuItem(
+                      title: 'FAQs',
+                      onTap: () => Get.toNamed(RoutesName.faqs),
+                    ),
+                    ProfileMenuItem(
+                      title: 'Terms & Conditions',
                       onTap: () => Get.toNamed(RoutesName.termsAndConditions),
                     ),
                     ProfileMenuItem(
                       title: 'Privacy Policy',
                       onTap: () => Get.toNamed(RoutesName.privacyPolicy),
                     ),
-                    ProfileMenuItem(
-                      title: 'Faq’s',
-                      onTap: () => Get.toNamed(RoutesName.faqs),
-                    ),
                   ],
                 ),
+                const SizedBox(height: 32),
               ],
             ),
           ),

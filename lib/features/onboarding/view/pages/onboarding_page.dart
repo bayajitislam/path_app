@@ -17,8 +17,6 @@ class OnboardingPage extends GetView<OnboardingController> {
 
   @override
   Widget build(BuildContext context) {
-    final PageController pageController = PageController();
-
     return Scaffold(
       backgroundColor: const Color(0xFFFEFEFE),
       body: AppBg(
@@ -50,7 +48,7 @@ class OnboardingPage extends GetView<OnboardingController> {
                   // Scrollable Step Content
                   Expanded(
                     child: PageView(
-                      controller: pageController,
+                      controller: controller.pageController,
                       physics: const NeverScrollableScrollPhysics(),
                       onPageChanged: (index) {
                         controller.currentStep.value = index + 1;
@@ -75,10 +73,7 @@ class OnboardingPage extends GetView<OnboardingController> {
                         child: OutlinedButton(
                           onPressed: () {
                             if (currentStep > 1) {
-                              pageController.previousPage(
-                                duration: const Duration(milliseconds: 300),
-                                curve: Curves.easeInOut,
-                              );
+                              controller.previousPage();
                             } else {
                               Get.back();
                             }
@@ -112,10 +107,7 @@ class OnboardingPage extends GetView<OnboardingController> {
                           child: ElevatedButton(
                             onPressed: () {
                               if (currentStep < 4) {
-                                pageController.nextPage(
-                                  duration: const Duration(milliseconds: 300),
-                                  curve: Curves.easeInOut,
-                                );
+                                controller.nextPage();
                               } else {
                                 Get.offAllNamed(RoutesName.auth);
                               }

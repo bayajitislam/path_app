@@ -3,8 +3,8 @@ import 'package:path_app/core/theme/app_pallete.dart';
 import 'package:path_app/core/theme/app_text_style.dart';
 import 'package:path_app/core/widgets/app_bg.dart';
 import 'package:path_app/core/widgets/primary_app_bar.dart';
-import 'package:path_app/features/log_route/view/widgets/build_import_dropdown.dart';
-import 'package:path_app/features/log_route/view/widgets/build_manual_logroute_form_.dart';
+import 'package:path_app/features/log_route/view/widgets/import_route_dropdown.dart';
+import 'package:path_app/features/log_route/view/widgets/manual_log_route_form.dart';
 import 'package:path_app/features/log_route/view/widgets/route_summary_card.dart';
 
 class LogRoutePage extends StatefulWidget {
@@ -38,7 +38,7 @@ class _LogRoutePageState extends State<LogRoutePage> {
                 const SizedBox(height: 16),
 
                 // 2. Import from Delivery App Dropdown
-                BuildImportDropDown(),
+                const ImportRouteDropdown(),
                 const SizedBox(height: 16),
 
                 // 3. Collapsible Add Log Form / Button
@@ -68,7 +68,7 @@ class _LogRoutePageState extends State<LogRoutePage> {
                     ),
                   )
                 else
-                  BuildManualLogrouteForm(
+                  ManualLogRouteForm(
                     onPressed: () {
                       setState(() {
                         _isFormExpanded = false;

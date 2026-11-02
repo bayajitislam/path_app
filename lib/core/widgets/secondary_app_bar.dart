@@ -44,7 +44,11 @@ class SecondaryAppBar extends StatelessWidget implements PreferredSizeWidget {
                     if (displayBack) ...[
                       GestureDetector(
                         onTap: () => Navigator.of(context).pop(),
-                        child: Icon(Icons.chevron_left, size: 24, color: backButtonColor),
+                        child: Icon(
+                          Icons.chevron_left,
+                          size: 24,
+                          color: backButtonColor,
+                        ),
                       ),
                       const SizedBox(width: 4),
                     ],

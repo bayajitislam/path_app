@@ -38,7 +38,6 @@ dependencies:
   get: ^4.7.3
   flutter_screenutil: ^5.9.3
   animated_bottom_navigation_bar: ^1.4.0
-  flutter_devlog: ^0.2.0
 
 dev_dependencies:
   flutter_test:
@@ -71,6 +70,7 @@ flutter:
     - assets/icons/
     - assets/play/
     - assets/images/
+    - assets/google_fonts/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

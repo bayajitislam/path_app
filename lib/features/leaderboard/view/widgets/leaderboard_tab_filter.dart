@@ -75,9 +75,7 @@ class _LeaderboardTabFilterState extends State<LeaderboardTabFilter>
         child: Stack(
           children: [
             // ── Layer 1: Base Black Background ──
-            Positioned.fill(
-              child: const ColoredBox(color: Color(0xFF000000)),
-            ),
+            Positioned.fill(child: const ColoredBox(color: Color(0xFF000000))),
 
             // ── Layer 2: Rotating Shimmer Gradient Beam (2s linear infinite) ──
             Positioned.fill(
@@ -121,8 +119,12 @@ class _LeaderboardTabFilterState extends State<LeaderboardTabFilter>
                                         begin: Alignment.topCenter,
                                         end: Alignment.bottomCenter,
                                         colors: [
-                                          AppPallete.white.withValues(alpha: .03),
-                                          AppPallete.white.withValues(alpha: .01),
+                                          AppPallete.white.withValues(
+                                            alpha: .03,
+                                          ),
+                                          AppPallete.white.withValues(
+                                            alpha: .01,
+                                          ),
                                         ],
                                       )
                                     : null,

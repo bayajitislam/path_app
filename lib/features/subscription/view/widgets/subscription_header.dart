@@ -12,11 +12,7 @@ class SubscriptionHeader extends StatelessWidget {
       children: [
         SizedBox(height: 20.h),
         Center(
-          child: Image.asset(
-            AppImages.appIcon,
-            width: 120.w,
-            height: 120.w,
-          ),
+          child: Image.asset(AppImages.appIcon, width: 120.w, height: 120.w),
         ),
         SizedBox(height: 24.h),
         Text(

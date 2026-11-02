@@ -37,10 +37,7 @@ class CountrySelectorField extends StatelessWidget {
         decoration: BoxDecoration(
           color: AppPallete.white,
           borderRadius: BorderRadius.circular(333.r),
-          border: Border.all(
-            color: const Color(0xFFE5E7EB),
-            width: 1.w,
-          ),
+          border: Border.all(color: const Color(0xFFE5E7EB), width: 1.w),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withValues(alpha: 0.03),

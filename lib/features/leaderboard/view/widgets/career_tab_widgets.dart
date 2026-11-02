@@ -88,7 +88,8 @@ class CareerBadge {
 
 class CareerBadgeScroller extends StatefulWidget {
   final List<CareerBadge> badges;
-  final int userRankIndex; // User's fixed rank (permanently highlighted in green)
+  final int
+  userRankIndex; // User's fixed rank (permanently highlighted in green)
   final ValueChanged<int>? onPageChanged;
 
   const CareerBadgeScroller({
@@ -162,7 +163,9 @@ class _CareerBadgeScrollerState extends State<CareerBadgeScroller> {
                     color: Colors.white,
                     border: Border.all(
                       color: isUserRank
-                          ? const Color(0xFF00C853) // Green border ONLY for user's rank
+                          ? const Color(
+                              0xFF00C853,
+                            ) // Green border ONLY for user's rank
                           : Colors.transparent,
                       width: 2.5,
                     ),
@@ -195,7 +198,9 @@ class _CareerBadgeScrollerState extends State<CareerBadgeScroller> {
                     fontSize: 13,
                     fontWeight: isUserRank ? FontWeight.w700 : FontWeight.w500,
                     color: isUserRank
-                        ? const Color(0xFF00C853) // Green text ONLY for user's rank
+                        ? const Color(
+                            0xFF00C853,
+                          ) // Green text ONLY for user's rank
                         : Colors.black54,
                   ),
                 ),

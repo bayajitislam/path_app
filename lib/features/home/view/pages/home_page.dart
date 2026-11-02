@@ -23,6 +23,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   late final AnimationController _entranceController;
   late final AnimationController _floatController;
+  late final List<CurvedAnimation> _entranceAnimations;
 
   static const List<Interval> _entranceIntervals = [
     Interval(0.00, 0.45, curve: Curves.easeOutBack),
@@ -47,12 +48,23 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       duration: const Duration(milliseconds: 3800),
     );
 
+    _entranceAnimations = List.generate(
+      _entranceIntervals.length,
+      (i) => CurvedAnimation(
+        parent: _entranceController,
+        curve: _entranceIntervals[i],
+      ),
+    );
+
     _entranceController.forward();
     _floatController.repeat();
   }
 
   @override
   void dispose() {
+    for (final anim in _entranceAnimations) {
+      anim.dispose();
+    }
     _entranceController.dispose();
     _floatController.dispose();
     super.dispose();
@@ -63,10 +75,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     required double phaseOffset,
     required Widget child,
   }) {
-    final entranceAnim = CurvedAnimation(
-      parent: _entranceController,
-      curve: _entranceIntervals[index],
-    );
+    final entranceAnim = _entranceAnimations[index];
 
     return RepaintBoundary(
       child: AnimatedBuilder(

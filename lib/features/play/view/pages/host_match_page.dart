@@ -4,6 +4,7 @@ import 'package:path_app/core/widgets/app_bg.dart';
 import 'package:path_app/core/widgets/app_searchbar.dart';
 import 'package:path_app/core/widgets/primary_app_bar.dart';
 import 'package:path_app/core/widgets/primary_button.dart';
+import 'package:path_app/features/play/view/widgets/host_match_duration_card.dart';
 import 'package:path_app/features/play/view/widgets/host_match_game_mode_selector.dart';
 import 'package:path_app/features/play/view/widgets/host_match_max_players_card.dart';
 import 'package:path_app/features/play/view/widgets/host_match_mode_toggle.dart';
@@ -25,6 +26,7 @@ class _HostMatchPageState extends State<HostMatchPage> {
   int _toggleIndex = 0;
   double _distance = 10;
   int _players = 4;
+  int _durationHours = 2;
 
   @override
   Widget build(BuildContext context) {
@@ -69,11 +71,17 @@ class _HostMatchPageState extends State<HostMatchPage> {
                 ),
                 const SizedBox(height: 10),
 
-                // ── Max Players ────────────────────────────────────
-                HostMatchMaxPlayersCard(
-                  value: _players,
-                  onChanged: (v) => setState(() => _players = v),
-                ),
+                // ── Max Players (Distance Mode) OR Game Duration (Duration Mode) ──
+                if (_toggleIndex == 0)
+                  HostMatchMaxPlayersCard(
+                    value: _players,
+                    onChanged: (v) => setState(() => _players = v),
+                  )
+                else
+                  HostMatchDurationCard(
+                    hours: _durationHours,
+                    onChanged: (v) => setState(() => _durationHours = v),
+                  ),
                 const SizedBox(height: 20),
 
                 // ── Player Search ──────────────────────────────────

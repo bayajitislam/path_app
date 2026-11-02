@@ -9,8 +9,32 @@ import 'package:path_app/core/widgets/primary_button.dart';
 import 'package:path_app/core/widgets/secondary_app_bar.dart';
 import 'package:path_app/routes/routes_name.dart';
 
-class ForgotPasswordPage extends StatelessWidget {
+class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({super.key});
+
+  @override
+  State<ForgotPasswordPage> createState() => _ForgotPasswordPageState();
+}
+
+class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
+  final TextEditingController _emailController = TextEditingController();
+  String? _errorMessage;
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    super.dispose();
+  }
+
+  void _handleSendOtp() {
+    final email = _emailController.text.trim();
+    if (email.isEmpty || !GetUtils.isEmail(email)) {
+      setState(() => _errorMessage = 'Please enter a valid email address');
+      return;
+    }
+    setState(() => _errorMessage = null);
+    Get.toNamed(RoutesName.otp);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +60,7 @@ class ForgotPasswordPage extends StatelessWidget {
                 ),
                 SizedBox(height: 32.h),
                 Text(
-                  'Forget Password',
+                  'Forgot Password',
                   style: GoogleFonts.inter(
                     fontWeight: FontWeight.w700,
                     fontSize: 20.sp,
@@ -58,8 +82,10 @@ class ForgotPasswordPage extends StatelessWidget {
                 ),
                 SizedBox(height: 8.h),
                 TextField(
+                  controller: _emailController,
+                  keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
-                    hintText: 'Rhebhek@gmail.com',
+                    hintText: 'john@example.com',
                     hintStyle: GoogleFonts.inter(
                       fontWeight: FontWeight.w400,
                       fontSize: 14.sp,
@@ -96,12 +122,31 @@ class ForgotPasswordPage extends StatelessWidget {
                     ),
                   ),
                 ),
+                if (_errorMessage != null) ...[
+                  SizedBox(height: 8.h),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.warning_amber_rounded,
+                        size: 16.r,
+                        color: const Color(0xFFDC2626),
+                      ),
+                      SizedBox(width: 6.w),
+                      Text(
+                        _errorMessage!,
+                        style: GoogleFonts.inter(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 12.sp,
+                          color: const Color(0xFFDC2626),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
                 SizedBox(height: 24.h),
                 PrimaryButton(
                   buttonName: 'Send OTP',
-                  onPressed: () {
-                    Get.toNamed(RoutesName.otp);
-                  },
+                  onPressed: _handleSendOtp,
                 ),
                 SizedBox(height: 60.h),
               ],

@@ -8,7 +8,8 @@ class LeaderboardController extends GetxController {
   final RxString selectedCarId = 'yellow_hover_car'.obs;
   final RxInt currentPoints = 850.obs;
   final RxInt currentRank = 4.obs; // Dolphin
-  final RxBool isLockedMilestoneView = false.obs; // Toggle between Milestone (Locked) View & Rank View
+  final RxBool isLockedMilestoneView =
+      false.obs; // Toggle between Milestone (Locked) View & Rank View
 
   final List<SpaceCarModel> cars = const [
     SpaceCarModel(
@@ -83,8 +84,10 @@ class LeaderboardController extends GetxController {
     ),
   ];
 
-  SpaceCarModel get activeCar =>
-      cars.firstWhere((c) => c.id == selectedCarId.value, orElse: () => cars.first);
+  SpaceCarModel get activeCar => cars.firstWhere(
+    (c) => c.id == selectedCarId.value,
+    orElse: () => cars.first,
+  );
 
   RankTierModel get activeTier =>
       RankTierModel.defaultTiers.firstWhere((t) => t.rank == currentRank.value);

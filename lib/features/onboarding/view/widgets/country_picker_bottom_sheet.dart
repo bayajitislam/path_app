@@ -10,11 +10,7 @@ class Country {
   final String flag;
   final String code;
 
-  const Country({
-    required this.name,
-    required this.flag,
-    required this.code,
-  });
+  const Country({required this.name, required this.flag, required this.code});
 }
 
 /// A modern, searchable bottom sheet containing all countries of the world.
@@ -122,7 +118,11 @@ class _CountryPickerBottomSheetState extends State<CountryPickerBottomSheet> {
               ),
               suffixIcon: _query.isNotEmpty
                   ? IconButton(
-                      icon: Icon(Icons.clear, size: 18.sp, color: const Color(0xFF9CA3AF)),
+                      icon: Icon(
+                        Icons.clear,
+                        size: 18.sp,
+                        color: const Color(0xFF9CA3AF),
+                      ),
                       onPressed: () {
                         _searchCtrl.clear();
                         setState(() => _query = '');
@@ -179,10 +179,8 @@ class _CountryPickerBottomSheetState extends State<CountryPickerBottomSheet> {
                   )
                 : ListView.separated(
                     itemCount: filtered.length,
-                    separatorBuilder: (_, _) => const Divider(
-                      height: 1,
-                      color: Color(0xFFF3F4F6),
-                    ),
+                    separatorBuilder: (_, _) =>
+                        const Divider(height: 1, color: Color(0xFFF3F4F6)),
                     itemBuilder: (context, index) {
                       final c = filtered[index];
                       final isSelected = widget.selectedCountry == c.name;
@@ -200,8 +198,9 @@ class _CountryPickerBottomSheetState extends State<CountryPickerBottomSheet> {
                           c.name,
                           style: GoogleFonts.inter(
                             fontSize: 15.sp,
-                            fontWeight:
-                                isSelected ? FontWeight.w600 : FontWeight.w400,
+                            fontWeight: isSelected
+                                ? FontWeight.w600
+                                : FontWeight.w400,
                             color: isSelected
                                 ? AppPallete.primary
                                 : const Color(0xFF111827),

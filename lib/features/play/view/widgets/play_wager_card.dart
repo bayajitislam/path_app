@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
@@ -52,6 +53,7 @@ class _PlayWagerCardState extends State<PlayWagerCard>
 
   late final AnimationController _sheenCtrl;
   final math.Random _rnd = math.Random();
+  Timer? _sweepTimer;
   bool _isDisposed = false;
 
   @override
@@ -65,27 +67,31 @@ class _PlayWagerCardState extends State<PlayWagerCard>
     _scheduleNextSweep(isInitial: true);
   }
 
-  void _scheduleNextSweep({bool isInitial = false}) async {
+  void _scheduleNextSweep({bool isInitial = false}) {
     if (!mounted || _isDisposed) return;
 
     final index = widget.cardIndex ?? (_instanceSeed++);
     // Random initial delay so cards start at completely different times
     final int delayMs = isInitial
-        ? (300 + (index * 1100) + _rnd.nextInt(1200)) // e.g. Card 0: ~0.8s, Card 1: ~2.1s, etc.
+        ? (300 +
+              (index * 1100) +
+              _rnd.nextInt(1200)) // e.g. Card 0: ~0.8s, Card 1: ~2.1s, etc.
         : (2000 + _rnd.nextInt(3200)); // Subsequent random pauses: 2.0s to 5.2s
 
-    await Future.delayed(Duration(milliseconds: delayMs));
-    if (!mounted || _isDisposed) return;
-
-    _sheenCtrl.forward(from: 0.0).then((_) {
+    _sweepTimer?.cancel();
+    _sweepTimer = Timer(Duration(milliseconds: delayMs), () {
       if (!mounted || _isDisposed) return;
-      _scheduleNextSweep(isInitial: false);
+      _sheenCtrl.forward(from: 0.0).then((_) {
+        if (!mounted || _isDisposed) return;
+        _scheduleNextSweep(isInitial: false);
+      });
     });
   }
 
   @override
   void dispose() {
     _isDisposed = true;
+    _sweepTimer?.cancel();
     _sheenCtrl.dispose();
     super.dispose();
   }
@@ -150,6 +156,8 @@ class _PlayWagerCardState extends State<PlayWagerCard>
                           children: [
                             Text(
                               widget.playerName,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                               style: const TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w700,
@@ -159,6 +167,8 @@ class _PlayWagerCardState extends State<PlayWagerCard>
                             const SizedBox(height: 2),
                             Text(
                               widget.playerRank,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                               style: const TextStyle(
                                 fontSize: 12,
                                 color: AppPallete.secondaryText,
@@ -213,73 +223,80 @@ class _PlayWagerCardState extends State<PlayWagerCard>
 
                   const SizedBox(height: 12),
 
-                  // ── Row 2: Mode + distance + location ──
-                  Row(
-                    children: [
-                      _InfoChip(
-                        label: widget.mode,
-                        color: const Color(0xFFD9F7E8),
-                        textColor: AppPallete.primary,
-                      ),
-                      const SizedBox(width: 8),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 10,
-                          vertical: 4,
+                  // ── Row 2: Mode + distance + location (Horizontally Scrollable) ──
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    physics: const BouncingScrollPhysics(),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        _InfoChip(
+                          label: widget.mode,
+                          color: const Color(0xFFD9F7E8),
+                          textColor: AppPallete.primary,
                         ),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFF9FAFB),
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(color: AppPallete.border),
+                        const SizedBox(width: 8),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 10,
+                            vertical: 4,
+                          ),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFF9FAFB),
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(color: AppPallete.border),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Image.asset(
+                                AppImages.linkedicon,
+                                width: 12,
+                                height: 12,
+                              ),
+                              const SizedBox(width: 4),
+                              Text(
+                                '${widget.distanceKm.toStringAsFixed(0)} km',
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  color: AppPallete.primaryText,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                        child: Row(
-                          children: [
-                            Image.asset(
-                              AppImages.linkedicon,
-                              width: 12,
-                              height: 12,
-                            ),
-                            const SizedBox(width: 4),
-                            Text(
-                              '${widget.distanceKm.toStringAsFixed(0)} km',
-                              style: const TextStyle(
-                                fontSize: 12,
+                        const SizedBox(width: 8),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 10,
+                            vertical: 4,
+                          ),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFF9FAFB),
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(color: AppPallete.border),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Icon(
+                                Icons.location_on,
+                                size: 14,
                                 color: AppPallete.primaryText,
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 10,
-                          vertical: 4,
-                        ),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFF9FAFB),
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(color: AppPallete.border),
-                        ),
-                        child: Row(
-                          children: [
-                            const Icon(
-                              Icons.location_on,
-                              size: 14,
-                              color: AppPallete.primaryText,
-                            ),
-                            const SizedBox(width: 2),
-                            Text(
-                              '${widget.distanceKm.toStringAsFixed(1)} km · ${widget.locationLabel}',
-                              style: const TextStyle(
-                                fontSize: 12,
-                                color: AppPallete.primaryText,
+                              const SizedBox(width: 2),
+                              Text(
+                                '${widget.distanceKm.toStringAsFixed(1)} km · ${widget.locationLabel}',
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  color: AppPallete.primaryText,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
 
                   const SizedBox(height: 12),
@@ -287,34 +304,54 @@ class _PlayWagerCardState extends State<PlayWagerCard>
                   // ── Row 3: Reward + slots + Play button ──
                   Row(
                     children: [
-                      // Reward
-                      Image.asset(AppImages.rewardIcon, width: 14, height: 14),
-                      const SizedBox(width: 4),
-                      Text(
-                        '${widget.reward} reward',
-                        style: const TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: AppPallete.primaryText,
+                      // Reward + slots info
+                      Expanded(
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Image.asset(
+                              AppImages.rewardIcon,
+                              width: 14,
+                              height: 14,
+                            ),
+                            const SizedBox(width: 4),
+                            Flexible(
+                              child: Text(
+                                '${widget.reward} reward',
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w600,
+                                  color: AppPallete.primaryText,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 10),
+                            const Icon(
+                              Icons.group_outlined,
+                              size: 16,
+                              color: AppPallete.secondaryText,
+                            ),
+                            const SizedBox(width: 4),
+                            Text(
+                              '${widget.slotsUsed}/${widget.slotsTotal}',
+                              style:
+                                  AppTextStyle.s14w7sora(
+                                    color: AppPallete.secondaryText,
+                                  ).copyWith(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                            ),
+                          ],
                         ),
                       ),
-                      const SizedBox(width: 16),
-                      const Icon(
-                        Icons.group_outlined,
-                        size: 16,
-                        color: AppPallete.secondaryText,
-                      ),
-                      const SizedBox(width: 4),
-                      Text(
-                        '${widget.slotsUsed}/${widget.slotsTotal}',
-                        style: AppTextStyle.s14w7sora(
-                          color: AppPallete.secondaryText,
-                        ).copyWith(fontSize: 12, fontWeight: FontWeight.w400),
-                      ),
-                      const Spacer(),
+                      const SizedBox(width: 8),
                       // Play button
                       GestureDetector(
-                        onTap: widget.onPlay ??
+                        onTap:
+                            widget.onPlay ??
                             () => Get.toNamed(RoutesName.joinLobby),
                         child: Container(
                           padding: const EdgeInsets.symmetric(
@@ -436,8 +473,9 @@ class _DiagonalGlossPainter extends CustomPainter {
     canvas.clipRRect(rrect);
 
     // Diagonal dimension
-    final diagonal =
-        math.sqrt(size.width * size.width + size.height * size.height);
+    final diagonal = math.sqrt(
+      size.width * size.width + size.height * size.height,
+    );
     final beamWidth = diagonal * 0.42;
 
     // Angle: 28 degrees
@@ -472,17 +510,7 @@ class _DiagonalGlossPainter extends CustomPainter {
         Color(0x0534C759),
         Colors.transparent,
       ],
-      stops: const [
-        0.0,
-        0.18,
-        0.36,
-        0.47,
-        0.50,
-        0.53,
-        0.64,
-        0.82,
-        1.0,
-      ],
+      stops: const [0.0, 0.18, 0.36, 0.47, 0.50, 0.53, 0.64, 0.82, 1.0],
     ).createShader(beamRect);
 
     final sheenPaint = Paint()..shader = sheenShader;

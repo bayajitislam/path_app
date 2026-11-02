@@ -19,6 +19,92 @@ class ResetPasswordPage extends StatefulWidget {
 class _ResetPasswordPageState extends State<ResetPasswordPage> {
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
+  String? _errorMessage;
+
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
+
+  @override
+  void dispose() {
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
+
+  void _handleResetSubmit() {
+    final password = _passwordController.text;
+    final confirm = _confirmPasswordController.text;
+
+    if (password.length < 6) {
+      setState(() => _errorMessage = 'Password must be at least 6 characters');
+      return;
+    }
+    if (password != confirm) {
+      setState(() => _errorMessage = 'Passwords do not match');
+      return;
+    }
+    setState(() => _errorMessage = null);
+
+    Get.dialog(
+      AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.r),
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              Icons.check_circle_rounded,
+              size: 60.r,
+              color: AppPallete.primary,
+            ),
+            SizedBox(height: 16.h),
+            Text(
+              'Success!',
+              style: GoogleFonts.inter(
+                fontWeight: FontWeight.w700,
+                fontSize: 18.sp,
+                color: const Color(0xFF1A0E14),
+              ),
+            ),
+            SizedBox(height: 8.h),
+            Text(
+              'Your password has been reset successfully.',
+              textAlign: TextAlign.center,
+              style: GoogleFonts.inter(
+                fontWeight: FontWeight.w400,
+                fontSize: 14.sp,
+                color: const Color(0xFF636363),
+              ),
+            ),
+            SizedBox(height: 20.h),
+            ElevatedButton(
+              onPressed: () {
+                Get.back();
+                Get.offAllNamed(RoutesName.auth);
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppPallete.primary,
+                minimumSize: Size(double.infinity, 45.h),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.r),
+                ),
+              ),
+              child: Text(
+                'Continue to Login',
+                style: GoogleFonts.inter(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 14.sp,
+                  color: AppPallete.white,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,6 +152,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                 ),
                 SizedBox(height: 8.h),
                 TextField(
+                  controller: _passwordController,
                   obscureText: _obscurePassword,
                   decoration: InputDecoration(
                     hintText: 'Enter your password',
@@ -130,6 +217,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                 ),
                 SizedBox(height: 8.h),
                 TextField(
+                  controller: _confirmPasswordController,
                   obscureText: _obscureConfirmPassword,
                   decoration: InputDecoration(
                     hintText: 'Re-enter your password',
@@ -170,8 +258,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     suffixIcon: GestureDetector(
                       onTap: () {
                         setState(
-                          () =>
-                              _obscureConfirmPassword = !_obscureConfirmPassword,
+                          () => _obscureConfirmPassword =
+                              !_obscureConfirmPassword,
                         );
                       },
                       child: Icon(
@@ -184,69 +272,31 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     ),
                   ),
                 ),
+                if (_errorMessage != null) ...[
+                  SizedBox(height: 8.h),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.warning_amber_rounded,
+                        size: 16.r,
+                        color: const Color(0xFFDC2626),
+                      ),
+                      SizedBox(width: 6.w),
+                      Text(
+                        _errorMessage!,
+                        style: GoogleFonts.inter(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 12.sp,
+                          color: const Color(0xFFDC2626),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
                 SizedBox(height: 24.h),
                 PrimaryButton(
                   buttonName: 'Confirm',
-                  onPressed: () {
-                    Get.dialog(
-                      AlertDialog(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.r),
-                        ),
-                        content: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(
-                              Icons.check_circle_rounded,
-                              size: 60.r,
-                              color: AppPallete.primary,
-                            ),
-                            SizedBox(height: 16.h),
-                            Text(
-                              'Success!',
-                              style: GoogleFonts.inter(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 18.sp,
-                                color: const Color(0xFF1A0E14),
-                              ),
-                            ),
-                            SizedBox(height: 8.h),
-                            Text(
-                              'Your password has been reset successfully.',
-                              textAlign: TextAlign.center,
-                              style: GoogleFonts.inter(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 14.sp,
-                                color: const Color(0xFF636363),
-                              ),
-                            ),
-                            SizedBox(height: 20.h),
-                            ElevatedButton(
-                              onPressed: () {
-                                Get.back();
-                                Get.offAllNamed(RoutesName.auth);
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: AppPallete.primary,
-                                minimumSize: Size(double.infinity, 45.h),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.r),
-                                ),
-                              ),
-                              child: Text(
-                                'Continue to Login',
-                                style: GoogleFonts.inter(
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 14.sp,
-                                  color: AppPallete.white,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
+                  onPressed: _handleResetSubmit,
                 ),
                 SizedBox(height: 60.h),
               ],

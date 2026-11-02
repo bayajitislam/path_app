@@ -19,6 +19,95 @@ class _AuthPageState extends State<AuthPage> {
   bool _isLogin = true;
   bool _obscurePassword = true;
   bool _hasError = false;
+  String _errorMessage = 'Please enter correct password';
+  String? _selectedPlatform;
+
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    _nameController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
+
+  void _handleAuthSubmit() {
+    setState(() => _hasError = false);
+    if (_isLogin) {
+      final email = _emailController.text.trim();
+      final password = _passwordController.text;
+
+      if (email.isEmpty) {
+        setState(() {
+          _hasError = true;
+          _errorMessage = 'Please enter your email address';
+        });
+        return;
+      }
+      if (!GetUtils.isEmail(email)) {
+        setState(() {
+          _hasError = true;
+          _errorMessage = 'Please enter a valid email address';
+        });
+        return;
+      }
+      if (password.isEmpty) {
+        setState(() {
+          _hasError = true;
+          _errorMessage = 'Please enter your password';
+        });
+        return;
+      }
+
+      Get.offNamedUntil(
+        RoutesName.subscription,
+        (route) => false,
+        arguments: {'isFromProfile': false},
+      );
+    } else {
+      final name = _nameController.text.trim();
+      final email = _emailController.text.trim();
+      final password = _passwordController.text;
+      final confirmPassword = _confirmPasswordController.text;
+
+      if (name.isEmpty) {
+        setState(() {
+          _hasError = true;
+          _errorMessage = 'Please enter your full name';
+        });
+        return;
+      }
+      if (email.isEmpty || !GetUtils.isEmail(email)) {
+        setState(() {
+          _hasError = true;
+          _errorMessage = 'Please enter a valid email address';
+        });
+        return;
+      }
+      if (password.length < 6) {
+        setState(() {
+          _hasError = true;
+          _errorMessage = 'Password must be at least 6 characters';
+        });
+        return;
+      }
+      if (password != confirmPassword) {
+        setState(() {
+          _hasError = true;
+          _errorMessage = 'Passwords do not match';
+        });
+        return;
+      }
+
+      Get.toNamed(RoutesName.otp);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,8 +143,10 @@ class _AuthPageState extends State<AuthPage> {
                   _buildLabel('Email Address'),
                   SizedBox(height: 8.h),
                   _buildField(
+                    controller: _emailController,
                     hintText: 'Enter your email',
                     hintColor: const Color(0xFF636363),
+                    keyboardType: TextInputType.emailAddress,
                   ),
                   SizedBox(height: 20.h),
                   Row(
@@ -81,6 +172,7 @@ class _AuthPageState extends State<AuthPage> {
                   ),
                   SizedBox(height: 8.h),
                   _buildPasswordField(
+                    controller: _passwordController,
                     obscureText: _obscurePassword,
                     hintText: 'Enter your password',
                     onToggle: () {
@@ -97,14 +189,16 @@ class _AuthPageState extends State<AuthPage> {
                           color: const Color(0xFFDC2626),
                         ),
                         SizedBox(width: 6.w),
-                        Text(
-                          'Please enter correct password',
-                          style: GoogleFonts.inter(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 12.sp,
-                            height: 1.25,
-                            letterSpacing: 0,
-                            color: const Color(0xFFDC2626),
+                        Expanded(
+                          child: Text(
+                            _errorMessage,
+                            style: GoogleFonts.inter(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 12.sp,
+                              height: 1.25,
+                              letterSpacing: 0,
+                              color: const Color(0xFFDC2626),
+                            ),
                           ),
                         ),
                       ],
@@ -114,20 +208,24 @@ class _AuthPageState extends State<AuthPage> {
                   _buildLabel('Full Name'),
                   SizedBox(height: 8.h),
                   _buildField(
-                    hintText: 'Jhon Doe',
+                    controller: _nameController,
+                    hintText: 'John Doe',
                     hintColor: const Color(0xFF636363),
                   ),
                   SizedBox(height: 20.h),
                   _buildLabel('Email Address'),
                   SizedBox(height: 8.h),
                   _buildField(
-                    hintText: 'Rhebhek@gmail.com',
+                    controller: _emailController,
+                    hintText: 'john@example.com',
                     hintColor: const Color(0xFF636363),
+                    keyboardType: TextInputType.emailAddress,
                   ),
                   SizedBox(height: 20.h),
                   _buildLabel('Password'),
                   SizedBox(height: 8.h),
                   _buildPasswordField(
+                    controller: _passwordController,
                     obscureText: _obscurePassword,
                     hintText: 'Enter your password',
                     onToggle: () {
@@ -138,6 +236,7 @@ class _AuthPageState extends State<AuthPage> {
                   _buildLabel('Re Type Password'),
                   SizedBox(height: 8.h),
                   _buildPasswordField(
+                    controller: _confirmPasswordController,
                     obscureText: _obscurePassword,
                     hintText: 'Re-enter your password',
                     onToggle: () {
@@ -148,21 +247,36 @@ class _AuthPageState extends State<AuthPage> {
                   _buildLabel('Delivery Platform'),
                   SizedBox(height: 8.h),
                   _buildDropdown(),
+                  if (_hasError) ...[
+                    SizedBox(height: 8.h),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.warning_amber_rounded,
+                          size: 16.r,
+                          color: const Color(0xFFDC2626),
+                        ),
+                        SizedBox(width: 6.w),
+                        Expanded(
+                          child: Text(
+                            _errorMessage,
+                            style: GoogleFonts.inter(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 12.sp,
+                              height: 1.25,
+                              letterSpacing: 0,
+                              color: const Color(0xFFDC2626),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ],
                 SizedBox(height: 24.h),
                 PrimaryButton(
                   buttonName: _isLogin ? 'Login' : 'Sign Up',
-                  onPressed: () {
-                    if (_isLogin) {
-                      Get.offNamedUntil(
-                        arguments: {'isFromProfile': false},
-                        RoutesName.subscription,
-                        (route) => false,
-                      );
-                    } else {
-                      Get.toNamed(RoutesName.otp);
-                    }
-                  },
+                  onPressed: _handleAuthSubmit,
                 ),
                 SizedBox(height: 16.h),
                 if (!_isLogin)
@@ -202,8 +316,15 @@ class _AuthPageState extends State<AuthPage> {
     );
   }
 
-  Widget _buildField({required String hintText, required Color hintColor}) {
+  Widget _buildField({
+    required String hintText,
+    required Color hintColor,
+    TextEditingController? controller,
+    TextInputType? keyboardType,
+  }) {
     return TextField(
+      controller: controller,
+      keyboardType: keyboardType,
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: GoogleFonts.inter(
@@ -236,8 +357,10 @@ class _AuthPageState extends State<AuthPage> {
     required bool obscureText,
     required String hintText,
     required VoidCallback onToggle,
+    TextEditingController? controller,
   }) {
     return TextField(
+      controller: controller,
       obscureText: obscureText,
       obscuringCharacter: '*',
       decoration: InputDecoration(
@@ -279,9 +402,7 @@ class _AuthPageState extends State<AuthPage> {
   }
 
   Widget _buildDropdown() {
-    String? selectedPlatform;
-
-    final List<String> platforms = [
+    final List<String> platforms = const [
       'Uber',
       'Lyft',
       'DoorDash',
@@ -297,7 +418,7 @@ class _AuthPageState extends State<AuthPage> {
       ),
       child: DropdownButtonHideUnderline(
         child: DropdownButtonFormField<String>(
-          initialValue: selectedPlatform,
+          initialValue: _selectedPlatform,
           hint: Padding(
             padding: EdgeInsets.symmetric(horizontal: 12.w),
             child: Text(
@@ -344,7 +465,7 @@ class _AuthPageState extends State<AuthPage> {
               )
               .toList(),
           onChanged: (value) {
-            setState(() => selectedPlatform = value);
+            setState(() => _selectedPlatform = value);
           },
         ),
       ),

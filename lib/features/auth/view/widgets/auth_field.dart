@@ -6,22 +6,22 @@ import 'package:path_app/routes/routes_name.dart';
 
 class AuthField extends StatefulWidget {
   final TextEditingController? controller;
-  final String lebel;
+  final String label;
   final String hintText;
   final bool isPassword;
   final bool isObscure;
   final bool isForgotPassword;
-  // final IconData prefixIcon;
+
   const AuthField({
     super.key,
-    required this.lebel,
+    String? label,
+    String? lebel,
     required this.controller,
     required this.hintText,
     this.isPassword = false,
-    // required this.prefixIcon,
     this.isObscure = false,
     this.isForgotPassword = false,
-  });
+  }) : label = label ?? lebel ?? '';
 
   @override
   State<AuthField> createState() => _AuthFieldState();
@@ -44,7 +44,7 @@ class _AuthFieldState extends State<AuthField> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(widget.lebel, style: Theme.of(context).textTheme.bodyMedium),
+            Text(widget.label, style: Theme.of(context).textTheme.bodyMedium),
 
             //only sign in screen
             widget.isForgotPassword

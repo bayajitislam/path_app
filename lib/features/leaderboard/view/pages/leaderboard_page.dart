@@ -236,13 +236,6 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                       scrollOffset,
                       h,
                     ),
-
-                    // ── 4. Bottom-Left Space Car Switcher Button (Centered in Ring) ──
-                    _buildCarSwitcherButton(
-                      w,
-                      roadHeight,
-                      controller,
-                    ),
                   ],
                 ),
               );
@@ -283,8 +276,12 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
     final nodeSpecs = [
       (tier: tiers[6], x: 169.5, y: 102.814), // Rank 7: Lion
       (tier: tiers[5], x: 114.5, y: 194.814), // Rank 6: Bear
-      (tier: tiers[4], x: 54.5, y: 273.814),  // Rank 5: Shark
-      (tier: tiers[3], x: 116.0, y: 351.314), // Rank 4: Dolphin (Current Active)
+      (tier: tiers[4], x: 54.5, y: 273.814), // Rank 5: Shark
+      (
+        tier: tiers[3],
+        x: 116.0,
+        y: 351.314,
+      ), // Rank 4: Dolphin (Current Active)
       (tier: tiers[2], x: 185.5, y: 433.814), // Rank 3: Small Fish
       (tier: tiers[1], x: 233.5, y: 516.814), // Rank 2: Phytoplankton
       (tier: tiers[0], x: 276.5, y: 605.814), // Rank 1: Garden
@@ -339,68 +336,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
       child: Transform.scale(
         scale: scale,
         alignment: Alignment.center,
-        child: RoadVehicleMarker(
-          carId: controller.selectedCarId.value,
-          onTap: () => Get.toNamed(RoutesName.selectSpaceCar),
-        ),
-      ),
-    );
-  }
-
-  /// Bottom-Left Space Car Switcher Button (Centered in dashed guideline ring)
-  Widget _buildCarSwitcherButton(
-    double w,
-    double roadHeight,
-    LeaderboardController controller,
-  ) {
-    return Positioned(
-      left: w * (32.5 / 393.0),
-      top: roadHeight * (592.814 / 767.0),
-      child: GestureDetector(
-        onTap: () => Get.toNamed(RoutesName.selectSpaceCar),
-        child: Container(
-          width: 63.r,
-          height: 63.r,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border.all(
-              color: Colors.white.withValues(alpha: 0.22),
-              width: 1,
-            ),
-          ),
-          child: Center(
-            child: Container(
-              width: 50.r,
-              height: 50.r,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: const Color(0xFF0F172A).withValues(alpha: 0.92),
-                border: Border.all(
-                  color: const Color(0xFF64748B),
-                  width: 1.2,
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: const Color(0xFF8B5CF6).withValues(alpha: 0.35),
-                    blurRadius: 14,
-                    offset: const Offset(0, 2),
-                  ),
-                ],
-              ),
-              child: Center(
-                child: Padding(
-                  padding: EdgeInsets.all(7.r),
-                  child: Image.asset(
-                    AppImages.purpleHoverCar,
-                    width: 36.r,
-                    height: 24.r,
-                    fit: BoxFit.contain,
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
+        child: RoadVehicleMarker(carId: controller.selectedCarId.value),
       ),
     );
   }

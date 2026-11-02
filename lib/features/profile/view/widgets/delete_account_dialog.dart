@@ -6,11 +6,7 @@ class DeleteAccountDialog extends StatelessWidget {
   final VoidCallback? onCancel;
   final VoidCallback? onDelete;
 
-  const DeleteAccountDialog({
-    super.key,
-    this.onCancel,
-    this.onDelete,
-  });
+  const DeleteAccountDialog({super.key, this.onCancel, this.onDelete});
 
   /// Static helper to trigger the dialog directly from any Scaffold context
   static Future<bool?> show(BuildContext context) {
@@ -71,7 +67,8 @@ class DeleteAccountDialog extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: onCancel ?? () => Navigator.of(context).pop(),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: AppPallete.primary, // App primary green
+                        backgroundColor:
+                            AppPallete.primary, // App primary green
                         elevation: 0,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(14),

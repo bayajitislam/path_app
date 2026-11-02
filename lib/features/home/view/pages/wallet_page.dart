@@ -2,32 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:path_app/core/common/app_dialog.dart';
 import 'package:path_app/core/widgets/app_bg.dart';
 import 'package:path_app/core/widgets/primary_app_bar.dart';
+import 'package:path_app/features/home/data/wallet_repository.dart';
+import 'package:path_app/features/home/models/transaction_model.dart';
 import 'package:path_app/features/home/view/widgets/section_header.dart';
 import 'package:path_app/features/home/view/widgets/wager_collection_banner.dart';
 import 'package:path_app/features/home/view/widgets/wallet_balance_card.dart';
 
-// Enum to keep track of transaction types
-enum TransactionType { deposit, withdraw }
-
-// Model class for transactions
-class TransactionItem {
-  final String title;
-  final String date;
-  final double amount;
-  final TransactionType type;
-  final String status;
-
-  TransactionItem({
-    required this.title,
-    required this.date,
-    required this.amount,
-    required this.type,
-    required this.status,
-  });
-}
-
 class WalletPage extends StatefulWidget {
-  const WalletPage({super.key});
+  final WalletRepository repository;
+  const WalletPage({
+    super.key,
+    this.repository = const LocalWalletRepository(),
+  });
 
   @override
   State<WalletPage> createState() => _WalletPageState();
@@ -36,38 +22,27 @@ class WalletPage extends StatefulWidget {
 class _WalletPageState extends State<WalletPage> {
   // Selected tab state: default to deposit
   TransactionType _selectedType = TransactionType.deposit;
+  List<TransactionModel> _allTransactions = [];
+  double _balance = 124.50;
+  bool _isLoading = true;
 
-  // Sample mock data for transactions
-  final List<TransactionItem> _allTransactions = [
-    TransactionItem(
-      title: 'Jackpot Payout',
-      date: 'May 24',
-      amount: 50.00,
-      type: TransactionType.deposit,
-      status: 'completed',
-    ),
-    TransactionItem(
-      title: 'Bank Deposit',
-      date: 'May 20',
-      amount: 20.00,
-      type: TransactionType.deposit,
-      status: 'completed',
-    ),
-    TransactionItem(
-      title: 'Weekly Withdrawal',
-      date: 'May 18',
-      amount: 15.00,
-      type: TransactionType.withdraw,
-      status: 'received',
-    ),
-    TransactionItem(
-      title: 'ATM Withdrawal',
-      date: 'May 12',
-      amount: 30.00,
-      type: TransactionType.withdraw,
-      status: 'received',
-    ),
-  ];
+  @override
+  void initState() {
+    super.initState();
+    _loadWalletData();
+  }
+
+  Future<void> _loadWalletData() async {
+    final balance = await widget.repository.getBalance();
+    final txs = await widget.repository.getTransactions();
+    if (mounted) {
+      setState(() {
+        _balance = balance;
+        _allTransactions = txs;
+        _isLoading = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +70,7 @@ class _WalletPageState extends State<WalletPage> {
                   ),
                   child: Column(
                     children: [
-                      const WalletBalanceCard(balance: 124.50),
+                      WalletBalanceCard(balance: _balance),
                       const SizedBox(height: 16),
                       const WagerCollectionBanner(),
                       const SizedBox(height: 16),
@@ -107,7 +82,14 @@ class _WalletPageState extends State<WalletPage> {
                       const SizedBox(height: 16),
 
                       // Filtered Transactions List
-                      if (filteredTransactions.isEmpty)
+                      if (_isLoading)
+                        const Padding(
+                          padding: EdgeInsets.all(24.0),
+                          child: Center(
+                            child: CircularProgressIndicator.adaptive(),
+                          ),
+                        )
+                      else if (filteredTransactions.isEmpty)
                         const Padding(
                           padding: EdgeInsets.all(24.0),
                           child: Text(
@@ -219,7 +201,7 @@ class _WalletPageState extends State<WalletPage> {
   }
 
   /// Transaction Card with dynamic color coding and status badge
-  Widget _buildTransactionCard(TransactionItem item) {
+  Widget _buildTransactionCard(TransactionModel item) {
     final isDeposit = item.type == TransactionType.deposit;
 
     // Green for Deposit (+), Red for Withdraw (-)
@@ -308,7 +290,7 @@ class _WalletPageState extends State<WalletPage> {
                   ),
                   const SizedBox(width: 4),
                   Text(
-                    item.status,
+                    item.status.name,
                     style: TextStyle(
                       color: amountColor,
                       fontSize: 12,

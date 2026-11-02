@@ -8,11 +8,7 @@ class RoadRankNode extends StatelessWidget {
   final RankTierModel tier;
   final VoidCallback onTap;
 
-  const RoadRankNode({
-    super.key,
-    required this.tier,
-    required this.onTap,
-  });
+  const RoadRankNode({super.key, required this.tier, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -38,54 +34,56 @@ class RoadRankNode extends StatelessWidget {
                   color: isCurrent
                       ? Colors.white
                       : (isUnlocked
-                          ? Colors.white
-                          : const Color(0xFF64748B).withValues(alpha: 0.55)),
+                            ? Colors.white
+                            : const Color(0xFF64748B).withValues(alpha: 0.55)),
                   border: Border.all(
                     color: isCurrent
                         ? const Color(0xFF00E5FF)
                         : (isUnlocked
-                            ? const Color(0xFF94A3B8)
-                            : Colors.white.withValues(alpha: 0.45)),
+                              ? const Color(0xFF94A3B8)
+                              : Colors.white.withValues(alpha: 0.45)),
                     width: isCurrent ? 2.5 : 1.5,
                   ),
                   boxShadow: isCurrent
                       ? [
                           BoxShadow(
-                            color: const Color(0xFF00E676).withValues(alpha: 0.55),
+                            color: const Color(
+                              0xFF00E676,
+                            ).withValues(alpha: 0.55),
                             blurRadius: 18,
                             offset: const Offset(0, 4),
                             spreadRadius: 3,
                           ),
                           BoxShadow(
-                            color: const Color(0xFF00E5FF).withValues(alpha: 0.65),
+                            color: const Color(
+                              0xFF00E5FF,
+                            ).withValues(alpha: 0.65),
                             blurRadius: 20,
                             spreadRadius: 4,
                           ),
                         ]
                       : (isUnlocked
-                          ? [
-                              BoxShadow(
-                                color: Colors.black.withValues(alpha: 0.35),
-                                blurRadius: 6,
-                                offset: const Offset(0, 2),
-                              ),
-                            ]
-                          : [
-                              BoxShadow(
-                                color: Colors.black.withValues(alpha: 0.25),
-                                blurRadius: 4,
-                                offset: const Offset(0, 1),
-                              ),
-                            ]),
+                            ? [
+                                BoxShadow(
+                                  color: Colors.black.withValues(alpha: 0.35),
+                                  blurRadius: 6,
+                                  offset: const Offset(0, 2),
+                                ),
+                              ]
+                            : [
+                                BoxShadow(
+                                  color: Colors.black.withValues(alpha: 0.25),
+                                  blurRadius: 4,
+                                  offset: const Offset(0, 1),
+                                ),
+                              ]),
                 ),
                 child: Center(
                   child: Opacity(
                     opacity: isUnlocked ? 1.0 : 0.85,
                     child: Text(
                       tier.emoji,
-                      style: TextStyle(
-                        fontSize: isCurrent ? 24.sp : 19.sp,
-                      ),
+                      style: TextStyle(fontSize: isCurrent ? 24.sp : 19.sp),
                     ),
                   ),
                 ),
@@ -105,9 +103,7 @@ class RoadRankNode extends StatelessWidget {
                 style: GoogleFonts.inter(
                   fontSize: isCurrent ? 14.sp : 12.sp,
                   fontWeight: isCurrent ? FontWeight.w800 : FontWeight.w600,
-                  color: isCurrent
-                      ? const Color(0xFF00E5A3)
-                      : Colors.white,
+                  color: isCurrent ? const Color(0xFF00E5A3) : Colors.white,
                   shadows: [
                     Shadow(
                       color: Colors.black.withValues(alpha: 0.9),

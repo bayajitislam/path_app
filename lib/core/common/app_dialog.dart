@@ -76,8 +76,9 @@ class AppDialog extends StatelessWidget {
                   Expanded(
                     child: OutlinedButton(
                       style: OutlinedButton.styleFrom(
-                        side: BorderSide(color: AppPallete.primary.withValues(
-                          alpha: 0.1,)),
+                        side: BorderSide(
+                          color: AppPallete.primary.withValues(alpha: 0.1),
+                        ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(33),
                         ),

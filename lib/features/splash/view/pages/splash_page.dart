@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,6 +17,7 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   late AnimationController _logoController;
   late AnimationController _buttonsController;
+  Timer? _buttonTimer;
 
   late Animation<Offset> _logoSlide;
   late Animation<double> _logoFade;
@@ -61,13 +63,14 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     );
 
     _logoController.forward();
-    Future.delayed(const Duration(milliseconds: 400), () {
+    _buttonTimer = Timer(const Duration(milliseconds: 400), () {
       if (mounted) _buttonsController.forward();
     });
   }
 
   @override
   void dispose() {
+    _buttonTimer?.cancel();
     _logoController.dispose();
     _buttonsController.dispose();
     super.dispose();
@@ -212,12 +215,9 @@ class _StarFieldState extends State<_StarField>
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _ctrl,
-      builder: (ctx, _) => CustomPaint(
-        painter: _StarPainter(_stars, _ctrl.value),
-        size: Size.infinite,
-      ),
+    return CustomPaint(
+      painter: _StarPainter(_stars, _ctrl),
+      size: Size.infinite,
     );
   }
 }
@@ -241,40 +241,41 @@ class _Star {
 
 class _StarPainter extends CustomPainter {
   final List<_Star> stars;
-  final double t;
+  final Animation<double> animation;
+  final Paint _paint = Paint()..style = PaintingStyle.fill;
+  final Path _path = Path();
 
-  _StarPainter(this.stars, this.t);
+  _StarPainter(this.stars, this.animation) : super(repaint: animation);
 
   // Draws a 4-pointed sparkle (✦) path centred at [cx, cy] with outer
   // radius [outer] and inner radius [inner], rotated by [angle] radians.
   void _drawSparkle(
     Canvas canvas,
-    Paint paint,
     double cx,
     double cy,
     double outer,
     double inner,
     double angle,
   ) {
-    final path = Path();
+    _path.reset();
     for (int i = 0; i < 8; i++) {
       final r = i.isEven ? outer : inner;
       final a = angle + i * pi / 4;
       final x = cx + r * cos(a);
       final y = cy + r * sin(a);
       if (i == 0) {
-        path.moveTo(x, y);
+        _path.moveTo(x, y);
       } else {
-        path.lineTo(x, y);
+        _path.lineTo(x, y);
       }
     }
-    path.close();
-    canvas.drawPath(path, paint);
+    _path.close();
+    canvas.drawPath(_path, _paint);
   }
 
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint()..style = PaintingStyle.fill;
+    final t = animation.value;
 
     for (final s in stars) {
       final twinkle = (sin((t + s.phase) * pi * 2) + 1) / 2;
@@ -283,24 +284,24 @@ class _StarPainter extends CustomPainter {
       final cx = s.x * size.width;
       final cy = s.y * size.height;
 
-      paint.color = Colors.white.withValues(alpha: opacity);
+      _paint.color = Colors.white.withValues(alpha: opacity);
 
       if (s.isSparkle) {
         // 4-pointed sparkle shape
-        _drawSparkle(canvas, paint, cx, cy, r, r * 0.22, s.rotation);
+        _drawSparkle(canvas, cx, cy, r, r * 0.22, s.rotation);
 
         // Soft glow halo for the sparkle
-        paint.color = Colors.white.withValues(alpha: opacity * 0.18);
-        _drawSparkle(canvas, paint, cx, cy, r * 2.6, r * 0.6, s.rotation);
+        _paint.color = Colors.white.withValues(alpha: opacity * 0.18);
+        _drawSparkle(canvas, cx, cy, r * 2.6, r * 0.6, s.rotation);
       } else {
         // Tiny accent dot
-        canvas.drawCircle(Offset(cx, cy), r * 0.4, paint);
+        canvas.drawCircle(Offset(cx, cy), r * 0.4, _paint);
       }
     }
   }
 
   @override
-  bool shouldRepaint(_StarPainter old) => true;
+  bool shouldRepaint(_StarPainter old) => false;
 }
 
 // ────────────────────────────────────────────────────

@@ -17,7 +17,6 @@ class RoutesName {
   static const String home = '/home';
   static const String profile = '/profile';
   static const String leaderboard = '/leaderboard';
-  static const String selectSpaceCar = '/select-space-car';
   static const String rankDetail = '/rank-detail';
   static const String logRoute = '/log-route';
 
@@ -29,11 +28,11 @@ class RoutesName {
 
   //Home
   static const String wallet = '/wallet';
-  static const String insight = '/insight';
   static const String tripAnalytics = '/trip-analytics';
   static const String friends = '/friends';
 
   //Profile
+  static const String insight = '/insight';
   static const String helpAndFeedback = '/help-and-feedback';
   static const String faqs = '/faqs';
   static const String privacyPolicy = '/privacy-policy';

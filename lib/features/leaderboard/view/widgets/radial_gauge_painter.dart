@@ -6,10 +6,7 @@ class RadialGaugePainter extends CustomPainter {
   final double progress; // 0.0 to 1.0
   final double strokeWidth;
 
-  RadialGaugePainter({
-    required this.progress,
-    this.strokeWidth = 14.0,
-  });
+  RadialGaugePainter({required this.progress, this.strokeWidth = 14.0});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -56,5 +53,6 @@ class RadialGaugePainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant RadialGaugePainter oldDelegate) =>
-      oldDelegate.progress != progress || oldDelegate.strokeWidth != strokeWidth;
+      oldDelegate.progress != progress ||
+      oldDelegate.strokeWidth != strokeWidth;
 }

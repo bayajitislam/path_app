@@ -24,13 +24,11 @@ class WalletBalanceCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           Text(
+          Text(
             'Available Balance',
             style: AppTextStyle.s14w4i(
-              color: AppPallete.white
-            ).copyWith(
-              fontWeight: FontWeight.w500
-            )
+              color: AppPallete.white,
+            ).copyWith(fontWeight: FontWeight.w500),
           ),
           const SizedBox(height: 8),
           Text(

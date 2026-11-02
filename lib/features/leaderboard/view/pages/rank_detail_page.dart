@@ -49,7 +49,8 @@ class _RankDetailPageState extends State<RankDetailPage>
         ? Get.find<LeaderboardController>()
         : Get.put(LeaderboardController());
 
-    final activeTier = widget.tier ??
+    final activeTier =
+        widget.tier ??
         (Get.arguments is RankTierModel
             ? Get.arguments as RankTierModel
             : controller.activeTier);
@@ -84,14 +85,15 @@ class _RankDetailPageState extends State<RankDetailPage>
             child: Column(
               children: [
                 // Top App Bar
-                SecondaryAppBar(
-                  title: activeTier.name,
-                ),
+                SecondaryAppBar(title: activeTier.name),
 
                 // Scrollable Body
                 Expanded(
                   child: SingleChildScrollView(
-                    padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 20.w,
+                      vertical: 12.h,
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -188,7 +190,12 @@ class _RankDetailPageState extends State<RankDetailPage>
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    const Text('• ', style: TextStyle(color: Color(0xFF34C759))),
+                                    const Text(
+                                      '• ',
+                                      style: TextStyle(
+                                        color: Color(0xFF34C759),
+                                      ),
+                                    ),
                                     Expanded(
                                       child: Text(
                                         b,
@@ -211,11 +218,16 @@ class _RankDetailPageState extends State<RankDetailPage>
                         // 4. Unlock Next Badge Box
                         if (nextTier.rank != activeTier.rank) ...[
                           Container(
-                            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 16.w,
+                              vertical: 14.h,
+                            ),
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(16.r),
-                              border: Border.all(color: const Color(0xFFE5E7EB)),
+                              border: Border.all(
+                                color: const Color(0xFFE5E7EB),
+                              ),
                               boxShadow: [
                                 BoxShadow(
                                   color: Colors.black.withValues(alpha: 0.04),
@@ -228,7 +240,8 @@ class _RankDetailPageState extends State<RankDetailPage>
                               children: [
                                 Expanded(
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         'Unlock Next Badge',
@@ -258,7 +271,9 @@ class _RankDetailPageState extends State<RankDetailPage>
                                       decoration: BoxDecoration(
                                         shape: BoxShape.circle,
                                         color: const Color(0xFFF3F4F6),
-                                        border: Border.all(color: const Color(0xFFE5E7EB)),
+                                        border: Border.all(
+                                          color: const Color(0xFFE5E7EB),
+                                        ),
                                       ),
                                       child: Center(
                                         child: Text(
@@ -315,7 +330,12 @@ class _RankDetailPageState extends State<RankDetailPage>
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    const Text('• ', style: TextStyle(color: Color(0xFF34C759))),
+                                    const Text(
+                                      '• ',
+                                      style: TextStyle(
+                                        color: Color(0xFF34C759),
+                                      ),
+                                    ),
                                     Expanded(
                                       child: Text(
                                         item,
@@ -341,7 +361,10 @@ class _RankDetailPageState extends State<RankDetailPage>
 
                 // Bottom CTA Button
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 20.w,
+                    vertical: 12.h,
+                  ),
                   child: PrimaryButton(
                     buttonName: 'View Leaderboard',
                     onPressed: () => Get.back(),

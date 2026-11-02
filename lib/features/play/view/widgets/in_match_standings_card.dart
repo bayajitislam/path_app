@@ -66,14 +66,13 @@ class _StandingTile extends StatelessWidget {
   final InMatchPlayer player;
   final String rank;
 
-  const _StandingTile({
-    required this.player,
-    required this.rank,
-  });
+  const _StandingTile({required this.player, required this.rank});
 
   String _getBadgeIcon(String badge) {
     final b = badge.toLowerCase();
-    if (b.contains('phyto') || b.contains('plankton') || b.contains('microbe')) {
+    if (b.contains('phyto') ||
+        b.contains('plankton') ||
+        b.contains('microbe')) {
       return '🦠';
     }
     if (b.contains('fish')) {
@@ -112,7 +111,7 @@ class _StandingTile extends StatelessWidget {
             backgroundImage: player.avatarUrl != null
                 ? NetworkImage(player.avatarUrl!)
                 : const AssetImage('assets/play/default_avatar.jpg')
-                    as ImageProvider,
+                      as ImageProvider,
           ),
           SizedBox(width: 14.w),
 
@@ -142,7 +141,9 @@ class _StandingTile extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(24),
                     border: Border.all(
-                      color: const Color(0xFFFED7AA), // Warm golden highlight rim
+                      color: const Color(
+                        0xFFFED7AA,
+                      ), // Warm golden highlight rim
                       width: 1.5,
                     ),
                     image: const DecorationImage(

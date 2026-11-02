@@ -3,12 +3,11 @@ import 'package:path_app/core/theme/app_pallete.dart';
 
 class AppTheme {
   //border
-  static OutlineInputBorder _border([
-    Color borderColor = AppPallete.border,
-  ]) => OutlineInputBorder(
-    borderRadius: BorderRadius.circular(6),
-    borderSide: BorderSide(color: borderColor),
-  );
+  static OutlineInputBorder _border([Color borderColor = AppPallete.border]) =>
+      OutlineInputBorder(
+        borderRadius: BorderRadius.circular(6),
+        borderSide: BorderSide(color: borderColor),
+      );
 
   static final ThemeData lightTheme = ThemeData.light().copyWith(
     scaffoldBackgroundColor: AppPallete.secondary,

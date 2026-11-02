@@ -37,9 +37,10 @@ class _IslandNodeCardState extends State<IslandNodeCard>
       vsync: this,
       duration: const Duration(milliseconds: 120),
     );
-    _scaleAnim = Tween<double>(begin: 1.0, end: 0.93).animate(
-      CurvedAnimation(parent: _pressCtrl, curve: Curves.easeInOut),
-    );
+    _scaleAnim = Tween<double>(
+      begin: 1.0,
+      end: 0.93,
+    ).animate(CurvedAnimation(parent: _pressCtrl, curve: Curves.easeInOut));
   }
 
   @override
@@ -63,10 +64,8 @@ class _IslandNodeCardState extends State<IslandNodeCard>
       onTapCancel: () => _pressCtrl.reverse(),
       child: AnimatedBuilder(
         animation: _scaleAnim,
-        builder: (context, child) => Transform.scale(
-          scale: _scaleAnim.value,
-          child: child,
-        ),
+        builder: (context, child) =>
+            Transform.scale(scale: _scaleAnim.value, child: child),
         child: Container(
           width: cardWidth,
           height: cardHeight,

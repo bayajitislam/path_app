@@ -42,7 +42,8 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
 
   @override
   Widget build(BuildContext context) {
-    final isFromProfile = Get.arguments != null && Get.arguments['isFromProfile'] == true;
+    final args = Get.arguments;
+    final isFromProfile = args is Map && args['isFromProfile'] == true;
 
     return Scaffold(
       backgroundColor: const Color(0xFFFEFEFE),
@@ -54,7 +55,13 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
         actions: [
           IconButton(
             icon: const Icon(Icons.close, color: Colors.black),
-            onPressed: () => Get.toNamed(RoutesName.basePage),
+            onPressed: () {
+              if (isFromProfile) {
+                Get.back();
+              } else {
+                Get.offAllNamed(RoutesName.basePage);
+              }
+            },
           ),
         ],
       ),
@@ -78,7 +85,11 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
                 PrimaryButton(
                   buttonName: isFromProfile ? 'Upgrade Now' : 'Subscribe Now',
                   onPressed: () {
-                    Get.toNamed(RoutesName.basePage);
+                    if (isFromProfile) {
+                      Get.back();
+                    } else {
+                      Get.offAllNamed(RoutesName.basePage);
+                    }
                   },
                 ),
                 SizedBox(height: 40.h),
